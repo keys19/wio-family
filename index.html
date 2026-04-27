@@ -1,0 +1,2216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Aman — Wio Family Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────────────────── */
+:root{
+  --navy:    #0F1B35;
+  --navy2:   #1A2E52;
+  --blush:   #F2B8A0;
+  --blush2:  #F5CFC0;
+  --blush3:  #FDF0EB;
+  --purple:  #5700C9;
+  --purple2: #7B3FF5;
+  --purple-light: #EDE6FA;
+  --white:   #FFFFFF;
+  --offwhite:#FAF8F6;
+  --grey:    #8A96A8;
+  --grey2:   #C8D0DC;
+  --gold:    #F5C842;
+  --coral:   #E8604C;
+  --r: 16px;
+  --rs: 8px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter', sans-serif;background:var(--offwhite);color:var(--navy);overflow-x:hidden;font-weight:400;}
+h1,h2,h3,h4,h5,h6{font-weight:600;}
+
+/* ─── NAV ─────────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  height:60px;padding:0 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(15,27,53,0.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(242,184,160,0.1);
+  transition:all 0.3s;
+}
+.nav-logo{font-weight:600;font-size:20px;color:var(--blush);letter-spacing:-0.5px;}
+.nav-logo em{color:rgba(255,255,255,0.5);font-style:normal;font-weight:400;font-size:14px;margin-left:10px;}
+.nav-links{display:flex;gap:6px;}
+.nav-links a{
+  font-size:12px;font-weight:500;color:rgba(255,255,255,0.5);
+  text-decoration:none;padding:5px 14px;border-radius:20px;transition:all 0.2s;
+}
+.nav-links a:hover{color:var(--blush);background:rgba(242,184,160,0.08);}
+.nav-pill{
+  font-size:11px;font-weight:600;letter-spacing:0.05em;
+  background:var(--blush);color:var(--navy);
+  padding:5px 16px;border-radius:20px;
+}
+
+/* ─── HERO ─────────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;background:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding:80px 48px;
+}
+.hero-bg-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(242,184,160,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,184,160,0.04) 1px, transparent 1px);
+  background-size:60px 60px;pointer-events:none;
+}
+.hero-glow{
+  position:absolute;top:20%;right:10%;width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle, rgba(87,0,201,0.07) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-glow2{
+  position:absolute;bottom:-10%;left:-5%;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle, rgba(242,184,160,0.06) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{max-width:960px;text-align:center;position:relative;z-index:1;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--blush);
+  background:rgba(242,184,160,0.1);border:1px solid rgba(242,184,160,0.2);
+  padding:6px 18px;border-radius:20px;margin-bottom:32px;
+}
+.hero-eyebrow::before{content:'●';font-size:7px;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.hero h1{
+  font-size:clamp(48px,7vw,88px);font-weight:600;
+  line-height:0.95;letter-spacing:-3px;color:var(--white);margin-bottom:24px;
+}
+.hero h1 .blush{color:var(--blush);}
+.hero h1 .dim{color:rgba(255,255,255,0.25);}
+.hero-sub{
+  font-size:18px;font-weight:300;color:rgba(255,255,255,0.55);
+  max-width:520px;margin:0 auto 48px;line-height:1.65;
+}
+.hero-scroll{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  color:rgba(255,255,255,0.25);font-size:12px;letter-spacing:0.1em;
+  text-transform:uppercase;cursor:pointer;animation:float 3s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.hero-scroll-arrow{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.15);
+  display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(255,255,255,0.4);
+}
+.hero-meta{display:flex;gap:40px;justify-content:center;margin-bottom:56px;flex-wrap:wrap;}
+.hero-meta-item{display:flex;flex-direction:column;gap:4px;text-align:left;}
+.hero-meta-label{font-size:10px;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.3);}
+.hero-meta-value{font-size:14px;font-weight:500;color:rgba(255,255,255,0.8);}
+
+/* ─── SECTION COMMON ──────────────────────────────────────── */
+.section{padding:100px 0;}
+.container{max-width:1140px;margin:0 auto;padding:0 48px;}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--purple);margin-bottom:12px;
+}
+.section-eyebrow::before{content:'';width:18px;height:2px;background:var(--purple);border-radius:2px;}
+h2.section-title{
+  font-size:clamp(28px,4vw,48px);font-weight:600;
+  letter-spacing:-1.5px;line-height:1.1;color:var(--navy);margin-bottom:16px;
+}
+.section-intro{font-size:17px;color:var(--grey);max-width:600px;line-height:1.7;margin-bottom:48px;}
+
+/* ─── STATS ───────────────────────────────────────────────── */
+#stats-section{background:var(--blush3);}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;
+  background:var(--grey2);border-radius:20px;overflow:hidden;margin-bottom:48px;
+}
+.stat-cell{background:var(--white);padding:36px 28px;position:relative;overflow:hidden;}
+.stat-cell::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blush);}
+.stat-num{font-size:clamp(36px,4vw,52px);font-weight:600;color:var(--navy);letter-spacing:-2px;line-height:1;margin-bottom:10px;}
+.stat-num span{color:var(--purple);}
+.stat-label{font-size:13px;font-weight:500;color:var(--grey);line-height:1.4;margin-bottom:8px;}
+.stat-src{font-size:11px;color:var(--grey2);font-style:italic;}
+
+/* ─── CHALLENGE ───────────────────────────────────────────── */
+#challenge{background:var(--white);}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px;}
+.pain-card{background:var(--offwhite);border-radius:var(--r);padding:28px;border:1px solid var(--grey2);}
+.pain-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.pain-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.pi-c{background:rgba(87,0,201,0.08);}
+.pi-o{background:rgba(242,184,160,0.2);}
+.pi-b{background:rgba(15,27,53,0.08);}
+.pain-card h4{font-size:15px;font-weight:600;color:var(--navy);}
+.pain-list{list-style:none;}
+.pain-list li{
+  font-size:13px;color:var(--grey);padding:7px 0;
+  border-bottom:1px solid var(--grey2);
+  padding-left:14px;position:relative;line-height:1.5;
+}
+.pain-list li:last-child{border:none;}
+.pain-list li::before{content:'→';position:absolute;left:0;color:var(--purple);font-size:11px;}
+.assumption{
+  background:rgba(87,0,201,0.03);border:1px solid rgba(87,0,201,0.12);
+  border-left:3px solid var(--purple);border-radius:var(--rs);padding:18px 22px;margin:8px 0;
+}
+.assumption strong{
+  display:block;font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:0.08em;color:var(--purple);margin-bottom:5px;
+}
+.assumption p{font-size:14px;color:var(--grey);line-height:1.6;}
+
+/* ─── RESEARCH ─────────────────────────────────────────────── */
+#research{background:var(--offwhite);}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:28px;}
+.tab{
+  font-size:12px;font-weight:600;padding:7px 18px;
+  border-radius:20px;border:1px solid var(--grey2);
+  background:var(--white);color:var(--grey);cursor:pointer;transition:all 0.2s;
+}
+.tab.active{background:var(--navy);color:var(--blush);border-color:var(--navy);}
+.tab:hover:not(.active){border-color:var(--navy);color:var(--navy);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.res-card{background:var(--white);border-radius:var(--r);padding:28px;border:1px solid var(--grey2);}
+.res-card h4{font-size:15px;font-weight:600;margin-bottom:14px;}
+.sq-item{
+  background:var(--white);border-radius:var(--rs);
+  padding:18px 22px;border:1px solid var(--grey2);
+  border-left:3px solid var(--purple);margin-bottom:10px;
+}
+.sq-who{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--purple);margin-bottom:4px;}
+.sq-q{font-size:14px;color:var(--navy);font-weight:500;line-height:1.5;}
+.sq-why{font-size:12px;color:var(--grey);margin-top:5px;line-height:1.5;}
+.comp-table{width:100%;border-collapse:collapse;}
+.comp-table th{background:var(--navy);color:var(--white);font-size:12px;font-weight:600;padding:12px 14px;text-align:left;}
+.comp-table td{padding:11px 14px;font-size:12px;border-bottom:1px solid var(--grey2);color:var(--grey);}
+.comp-table .wrow td{background:rgba(87,0,201,0.03);color:var(--navy);font-weight:500;}
+.ck{color:var(--purple);font-size:15px;}.cx{color:var(--grey2);font-size:15px;}
+
+/* ─── ROOT CAUSES ─────────────────────────────────────────── */
+#rootcause{background:var(--navy);}
+#rootcause .section-eyebrow{color:var(--blush);}
+#rootcause .section-eyebrow::before{background:var(--blush);}
+#rootcause h2.section-title{color:var(--white);}
+#rootcause .section-intro{color:rgba(255,255,255,0.4);}
+.rc-card{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(242,184,160,0.12);
+  border-radius:20px;padding:36px;margin-bottom:20px;position:relative;
+}
+.rc-num{
+  position:absolute;top:-14px;left:32px;font-size:12px;font-weight:600;
+  background:var(--blush);color:var(--navy);padding:3px 14px;border-radius:20px;
+}
+.rc-card h4{font-size:20px;font-weight:600;color:var(--white);margin-bottom:12px;margin-top:8px;line-height:1.3;}
+.rc-card p{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;}
+.rc-persist{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.07);font-size:13px;color:rgba(255,255,255,0.3);}
+.rc-persist strong{color:rgba(255,255,255,0.6);}
+
+/* ─── SOLUTION ─────────────────────────────────────────────── */
+#solution{background:var(--white);}
+.feature-hero-block{
+  background:var(--navy);border-radius:24px;padding:56px 52px;
+  position:relative;overflow:hidden;margin-bottom:48px;
+}
+.feature-hero-block::before{
+  content:'';position:absolute;top:-100px;right:-80px;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle, rgba(242,184,160,0.1) 0%, transparent 70%);
+}
+.fhb-inner{position:relative;z-index:1;}
+.feature-name{font-size:clamp(40px,6vw,72px);font-weight:600;letter-spacing:-3px;color:var(--blush);line-height:1;margin-bottom:8px;}
+.feature-arabic{font-size:20px;color:rgba(242,184,160,0.5);margin-bottom:20px;font-weight:300;}
+.feature-tagline{font-size:18px;font-weight:300;color:rgba(255,255,255,0.65);max-width:500px;line-height:1.65;margin-bottom:32px;}
+.pills{display:flex;gap:10px;flex-wrap:wrap;}
+.pill{
+  font-size:11px;font-weight:600;letter-spacing:0.06em;padding:5px 16px;border-radius:20px;
+  border:1px solid rgba(242,184,160,0.25);color:var(--blush);background:rgba(242,184,160,0.06);
+}
+
+/* Flow */
+.flow-block{background:var(--navy);border-radius:var(--r);padding:36px 40px;margin-bottom:40px;}
+.flow-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blush);margin-bottom:20px;}
+.flow-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.fi{background:rgba(242,184,160,0.08);border:1px solid rgba(242,184,160,0.2);border-radius:10px;padding:12px 18px;text-align:center;}
+.fi-main{font-size:13px;font-weight:600;color:var(--white);}
+.fi-sub{font-size:11px;color:var(--grey);margin-top:2px;}
+.fa{color:var(--blush);font-size:16px;}
+.fc{background:rgba(245,200,66,0.07);border:1px solid rgba(245,200,66,0.2);border-radius:10px;padding:10px 14px;font-size:11px;color:var(--gold);font-style:italic;}
+
+/* Mechanics */
+.mech-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px;}
+.mech-card{background:var(--offwhite);border-radius:var(--r);padding:28px;border:1px solid var(--grey2);}
+.mech-card h4{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:8px;}
+.mech-card p{font-size:13px;color:var(--grey);line-height:1.65;}
+.mech-tag{
+  display:inline-block;margin-top:12px;font-size:10px;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--purple);
+  background:rgba(87,0,201,0.07);padding:3px 10px;border-radius:20px;
+}
+.mech-icon-wrap{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+
+/* Journey */
+.journey-step{display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--grey2);}
+.journey-step:last-child{border:none;}
+.jnum{
+  width:40px;height:40px;border-radius:50%;background:var(--blush);color:var(--navy);
+  font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.jcontent h4{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:5px;}
+.jcontent p{font-size:14px;color:var(--grey);line-height:1.6;}
+.jdetail{
+  margin-top:10px;padding:12px 16px;background:rgba(242,184,160,0.08);
+  border-left:2px solid var(--blush);border-radius:0 var(--rs) var(--rs) 0;
+  font-size:13px;color:var(--navy);font-style:italic;line-height:1.5;
+}
+
+/* Metrics */
+.metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px;}
+.mc{background:var(--offwhite);border-radius:var(--rs);padding:18px;border:1px solid var(--grey2);}
+.mc-label{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--grey);margin-bottom:5px;}
+.mc-val{font-size:22px;font-weight:600;color:var(--purple);}
+.mc-desc{font-size:12px;color:var(--grey);margin-top:3px;line-height:1.4;}
+
+/* Trade-offs */
+.to-row{display:flex;gap:14px;margin-bottom:10px;}
+.to-badge{flex-shrink:0;font-size:10px;font-weight:600;padding:3px 12px;border-radius:20px;align-self:flex-start;margin-top:2px;}
+.bg{background:rgba(87,0,201,0.08);color:var(--purple);}
+.ba{background:rgba(245,200,66,0.12);color:#C8940A;}
+.br{background:rgba(232,96,76,0.1);color:var(--coral);}
+.to-text{font-size:14px;color:var(--grey);line-height:1.6;}
+
+/* GTM */
+.gtm-item{
+  display:flex;gap:16px;align-items:flex-start;background:var(--offwhite);
+  border-radius:var(--r);padding:24px;border:1px solid var(--grey2);margin-bottom:14px;
+}
+.gtm-item h4{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:5px;}
+.gtm-item p{font-size:13px;color:var(--grey);line-height:1.5;}
+.copy-eg{
+  background:rgba(242,184,160,0.1);border-left:3px solid var(--blush);
+  border-radius:0 var(--rs) var(--rs) 0;padding:12px 16px;margin:10px 0;
+  font-size:13px;color:var(--navy);font-style:italic;
+}
+.copy-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--blush);font-style:normal;display:block;margin-bottom:3px;}
+.phase-badge{font-size:11px;font-weight:600;color:var(--purple);background:rgba(87,0,201,0.08);padding:3px 12px;border-radius:20px;display:inline-block;margin-top:8px;}
+
+/* Disciplines */
+.disciplines-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px;}
+.disc-card{background:var(--offwhite);border-radius:var(--r);padding:24px;border:1px solid var(--grey2);}
+.disc-card h4{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:8px;}
+.disc-card p{font-size:13px;color:var(--grey);line-height:1.6;}
+.disc-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+
+/* ─── EXECUTION ─────────────────────────────────────────────── */
+#execution{background:var(--offwhite);}
+.phase-card{
+  background:var(--white);border-radius:var(--r);padding:28px 32px;
+  border:1px solid var(--grey2);border-left:4px solid var(--purple);margin-bottom:16px;
+}
+.ph-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+.ph-name{font-size:17px;font-weight:600;color:var(--navy);}
+.ph-time{font-size:11px;font-weight:600;color:var(--purple);background:rgba(87,0,201,0.07);padding:3px 12px;border-radius:20px;}
+.ph-list{list-style:none;}
+.ph-list li{font-size:13px;color:var(--grey);padding:5px 0;padding-left:18px;position:relative;line-height:1.5;}
+.ph-list li::before{content:'✓';position:absolute;left:0;color:var(--purple);font-size:11px;}
+
+/* ─── CALCULATIONS ─────────────────────────────────────────── */
+#calculations{background:var(--navy);}
+#calculations .section-eyebrow{color:var(--blush);}
+#calculations .section-eyebrow::before{background:var(--blush);}
+#calculations h2.section-title{color:var(--white);}
+#calculations .section-intro{color:rgba(255,255,255,0.4);}
+.calc-block{background:rgba(255,255,255,0.04);border:1px solid rgba(242,184,160,0.12);border-radius:var(--r);padding:36px;margin-bottom:20px;}
+.calc-title{font-size:18px;font-weight:600;color:var(--white);margin-bottom:20px;}
+.ctable{width:100%;border-collapse:collapse;}
+.ctable th{font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.55);padding:9px 14px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);}
+.ctable td{font-size:13px;color:rgba(255,255,255,0.85);padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.ctable .chi td{color:var(--blush);font-weight:600;background:rgba(242,184,160,0.05);}
+.formula{
+  background:rgba(87,0,201,0.07);border:1px solid rgba(87,0,201,0.15);
+  border-radius:var(--rs);padding:16px 20px;margin:14px 0;
+  font-family:'Courier New',monospace;font-size:12px;color:rgba(255,255,255,0.8);line-height:1.9;
+}
+.calc-result{
+  background:rgba(242,184,160,0.08);border:1px solid rgba(242,184,160,0.2);
+  border-radius:var(--rs);padding:18px 22px;margin-top:14px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cr-label{font-size:13px;color:rgba(255,255,255,0.8);}
+.cr-val{font-size:28px;font-weight:600;color:var(--blush);letter-spacing:-1px;}
+
+/* ─── FAQ ───────────────────────────────────────────────────── */
+#faq{background:var(--offwhite);}
+#faq .section-eyebrow{color:var(--purple);}
+#faq .section-eyebrow::before{background:var(--purple);}
+#faq h2.section-title{color:var(--navy);}
+#faq .section-intro{color:var(--grey);}
+.faq-cat{
+  font-size:10px;font-weight:600;color:var(--purple);text-transform:uppercase;letter-spacing:0.12em;
+  margin:28px 0 12px;display:flex;align-items:center;gap:8px;
+}
+.faq-cat::before{content:'';width:14px;height:1px;background:var(--purple);border-radius:2px;}
+.faq-item{
+  background:var(--white);border:1px solid var(--grey2);
+  border-radius:12px;margin-bottom:6px;overflow:hidden;
+  transition:background 0.2s;
+}
+.faq-item:hover{background:rgba(87,0,201,0.02);}
+.faq-q{
+  padding:18px 22px;font-size:14px;font-weight:500;color:var(--navy);cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+.faq-tog{
+  width:24px;height:24px;border-radius:50%;
+  background:rgba(87,0,201,0.08);border:1px solid rgba(87,0,201,0.15);
+  color:var(--purple);display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;transition:transform 0.3s,background 0.2s;font-weight:400;
+}
+.faq-item.open .faq-tog{transform:rotate(45deg);background:rgba(87,0,201,0.15);}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.35s ease, padding 0.2s;
+  padding:0 22px;font-size:13px;color:var(--grey);line-height:1.7;
+}
+.faq-item.open .faq-a{max-height:400px;padding:0 22px 18px;}
+
+/* ─── MODAL ─────────────────────────────────────────────────── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);
+  z-index:9000;align-items:center;justify-content:center;padding:24px;
+}
+.modal-overlay.open{display:flex;}
+.modal-box{
+  background:var(--white);border-radius:24px;padding:40px;
+  max-width:600px;width:100%;max-height:80vh;overflow-y:auto;position:relative;
+}
+.modal-close{
+  position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:50%;
+  background:var(--offwhite);border:1px solid var(--grey2);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--grey);
+  transition:all 0.2s;
+}
+.modal-close:hover{background:var(--grey2);}
+.modal-box h3{font-size:20px;font-weight:600;color:var(--navy);margin-bottom:16px;padding-right:40px;}
+.modal-box p,.modal-box li{font-size:14px;color:var(--grey);line-height:1.7;}
+.read-more-btn{
+  font-size:12px;font-weight:600;color:var(--purple);cursor:pointer;
+  text-decoration:underline;text-underline-offset:3px;background:none;border:none;
+  padding:0;margin-top:8px;display:inline-block;
+}
+
+/* ─── PROTOTYPE SECTION ─────────────────────────────────────── */
+/* Prototype is now inline within solution section */
+.solution-split{display:grid;grid-template-columns:1fr 360px;gap:60px;align-items:start;}
+.solution-left{min-width:0;}
+.solution-right{position:sticky;top:70px;max-height:calc(100vh - 80px);overflow:hidden;}
+
+.proto-panel{background:var(--navy);border-radius:24px;padding:20px 16px 14px;display:flex;flex-direction:column;align-items:center;gap:10px;max-height:calc(100vh - 90px);overflow:hidden;}
+.proto-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--blush);margin-bottom:0;}
+.proto-controls{
+  display:flex;align-items:center;gap:10px;width:100%;
+}
+.proto-label{flex:1;text-align:center;}
+.proto-label .screen-num{font-size:10px;font-weight:600;color:rgba(255,255,255,0.35);letter-spacing:0.06em;text-transform:uppercase;display:block;margin-bottom:2px;}
+.proto-label .screen-name{font-size:11px;font-weight:500;color:rgba(255,255,255,0.65);}
+.proto-btn{
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.75);padding:6px 14px;border-radius:16px;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:500;transition:background 0.18s;white-space:nowrap;
+}
+.proto-btn:hover{background:rgba(255,255,255,0.15);}
+.proto-btn:disabled{opacity:0.25;cursor:not-allowed;}
+.proto-dots{display:flex;gap:4px;justify-content:center;}
+.proto-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.2);transition:all 0.25s;cursor:pointer;}
+.proto-dot.active{background:var(--blush);width:12px;border-radius:2px;}
+
+/* Phone - smaller for sidebar */
+.phone-frame{
+  height:min(620px, calc(100vh - 210px));
+  aspect-ratio:9/19.5;
+  background:#F2F2F7;border-radius:clamp(28px,3.5vw,44px);
+  overflow:hidden;position:relative;flex-shrink:0;
+  box-shadow:0 0 0 6px #1A2030,0 0 0 8px #111826,0 30px 60px rgba(0,0,0,0.55),0 6px 16px rgba(0,0,0,0.4);
+}
+.phone-frame::before{
+  content:'';position:absolute;top:2.5%;left:50%;transform:translateX(-50%);
+  width:30%;height:3.5%;background:#1A2030;border-radius:16px;z-index:999;
+}
+
+@media(max-width:1000px){
+  .solution-split{grid-template-columns:1fr;}
+  .solution-right{position:relative;top:0;max-height:none;display:flex;flex-direction:column;align-items:center;}
+  .phone-frame{height:min(693px, 80vh);}
+}
+
+/* Prototype screens */
+/* pscreen overridden by zoom wrapper below */
+/* pscreen.active overridden below */
+.p-scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.p-scroll::-webkit-scrollbar{display:none;}
+
+/* Variables internal to prototype */
+.pv-p{color:#5B3FEA;}
+.pv-g{color:#30D158;}
+
+/* Status bar */
+.p-status{display:flex;justify-content:space-between;align-items:center;padding:max(36px,7%) 20px 0;position:relative;z-index:10;}
+.p-status .time{font-size:16px;font-weight:700;letter-spacing:-0.3px;}
+.p-status .icons{display:flex;align-items:center;gap:5px;font-size:13px;}
+
+/* Hero/header */
+.p-hero{background:linear-gradient(180deg,rgba(145,196,220,0.9) 0%,rgba(160,200,160,0.6) 28%,rgba(196,168,112,0.7) 55%,rgba(192,144,100,0.85) 75%,rgba(180,120,80,0.9) 100%),radial-gradient(ellipse at 50% 80%,#C8906A,#91C4DC);padding-bottom:36px;}
+.p-hero .p-status{color:#1a1a2e;}
+.p-hero h1{font-size:34px;font-weight:700;color:white;padding:10px 24px 16px;text-shadow:0 1px 4px rgba(0,0,0,0.15);letter-spacing:-0.5px;}
+.p-tabs{display:flex;gap:8px;padding:0 16px;overflow-x:auto;scrollbar-width:none;}
+.p-tabs::-webkit-scrollbar{display:none;}
+.p-tab{padding:9px 18px;border-radius:22px;font-size:13px;font-weight:500;white-space:nowrap;border:none;cursor:pointer;transition:all 0.18s;font-family:'Inter',sans-serif;}
+.p-tab.on{background:white;color:#1C1C1E;font-weight:700;}
+.p-tab.off{background:rgba(255,255,255,0.35);color:white;}
+
+/* Content area */
+.p-content{background:#F2F2F7;border-radius:26px 26px 0 0;margin-top:-22px;padding:20px 16px 100px;flex:1;overflow-y:auto;scrollbar-width:none;}
+.p-content::-webkit-scrollbar{display:none;}
+
+/* Cards */
+.p-card{background:white;border-radius:18px;padding:18px;margin-bottom:12px;}
+.p-card-row{display:flex;gap:10px;margin-bottom:12px;}
+.p-card-half{flex:1;background:white;border-radius:18px;padding:16px;}
+
+/* Saving space card */
+.p-scard{border-radius:18px;padding:20px;margin-bottom:12px;color:white;position:relative;overflow:hidden;}
+.p-scard-save{background:linear-gradient(135deg,#7B4EE0 0%,#3B2A8A 55%,#1A1248 100%);}
+.p-scard-aman{background:linear-gradient(135deg,#3B6ED4 0%,#1E3A82 55%,#0D1B46 100%);}
+.p-scard::before{content:'';position:absolute;top:-30px;right:-30px;width:140px;height:140px;background:rgba(255,255,255,0.05);border-radius:50%;}
+.p-scard h3{font-size:17px;font-weight:700;margin-bottom:3px;}
+.p-scard .psub{font-size:12px;color:rgba(255,255,255,0.65);margin-bottom:12px;}
+.p-scard .pamount{font-size:28px;font-weight:300;letter-spacing:-0.5px;}
+
+/* Coverage */
+.p-cov-track{height:5px;background:rgba(255,255,255,0.18);border-radius:3px;overflow:hidden;}
+.p-cov-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#30D158,#5AC86A);}
+
+/* Avatar */
+.p-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:2.5px solid white;}
+.p-av-sm{width:30px;height:30px;font-size:15px;border:2px solid white;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.p-av-keya{background:#D4C0A8;}
+.p-av-mita{background:#C4B0E8;}
+.p-av-pair{display:flex;}
+.p-av-pair .p-av-sm:nth-child(2){margin-left:-8px;}
+
+/* Bottom nav */
+.p-bottom-nav{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:68px;height:68px;background:#5B3FEA;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 20px rgba(91,63,234,0.5);z-index:50;}
+
+/* Buttons */
+.p-btn{display:flex;align-items:center;justify-content:center;border-radius:30px;font-family:'Inter',sans-serif;font-weight:700;font-size:16px;cursor:pointer;border:none;padding:17px 32px;width:100%;transition:all 0.18s;letter-spacing:-0.2px;}
+.p-btn-primary{background:#5B3FEA;color:white;}
+.p-btn-outline{background:transparent;color:#5B3FEA;border:2px solid #5B3FEA;}
+.p-btn-ghost{background:transparent;color:#8E8E93;font-weight:500;}
+.p-btn-danger{background:transparent;color:#FF453A;border:2px solid #FF453A;}
+.p-btn-sm{padding:10px 20px;font-size:13px;border-radius:22px;font-weight:600;}
+
+/* Setup */
+.p-setup-hd{background:white;padding:20px 22px 0;display:flex;flex-direction:column;}
+.p-back{background:none;border:none;font-size:17px;cursor:pointer;color:#5B3FEA;align-self:flex-start;padding:4px;margin-bottom:8px;display:flex;align-items:center;gap:4px;font-family:'Inter',sans-serif;font-weight:500;}
+.p-prog-track{height:3px;background:#E8E8ED;border-radius:2px;margin:12px 0 0;overflow:hidden;}
+.p-prog-fill{height:100%;background:#5B3FEA;border-radius:2px;transition:width 0.4s ease;}
+.p-setup-body{padding:24px 22px;flex:1;display:flex;flex-direction:column;gap:20px;}
+.p-setup-title{font-size:26px;font-weight:700;color:#1C1C1E;line-height:1.25;letter-spacing:-0.5px;}
+.p-setup-sub{font-size:15px;color:#8E8E93;line-height:1.5;}
+
+/* Amount input */
+.p-amt-input{display:flex;align-items:baseline;gap:6px;padding:20px 0 8px;border-bottom:2px solid #5B3FEA;}
+.p-curr-sym{font-size:30px;font-weight:300;color:#1C1C1E;}
+.p-amt-big{font-size:64px;font-weight:300;color:#1C1C1E;line-height:1;letter-spacing:-2px;}
+
+/* Chip */
+.p-chip{display:inline-flex;align-items:center;gap:6px;background:#F0EEFF;color:#5B3FEA;border-radius:20px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer;}
+
+/* Option card */
+.p-opt{background:white;border:2px solid #E8E8ED;border-radius:16px;padding:18px;cursor:pointer;transition:all 0.18s;display:flex;align-items:flex-start;gap:14px;}
+.p-opt.selected{border-color:#5B3FEA;background:#FAF8FF;}
+.p-opt-radio{width:22px;height:22px;border-radius:50%;border:2px solid #E8E8ED;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;transition:all 0.18s;}
+.p-opt.selected .p-opt-radio{border-color:#5B3FEA;background:#5B3FEA;}
+.p-opt-dot{width:8px;height:8px;border-radius:50%;background:white;opacity:0;transition:opacity 0.18s;}
+.p-opt.selected .p-opt-dot{opacity:1;}
+.p-opt-text h4{font-size:15px;font-weight:700;color:#1C1C1E;margin-bottom:4px;}
+.p-opt-text p{font-size:13px;color:#8E8E93;line-height:1.45;}
+
+/* Slider */
+.p-slider-wrap{position:relative;padding:8px 0 20px;}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:#E8E8ED;border-radius:2px;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;background:#5B3FEA;border-radius:50%;cursor:pointer;box-shadow:0 2px 10px rgba(91,63,234,0.4);border:3px solid white;}
+.p-slider-val{font-size:42px;font-weight:300;color:#1C1C1E;letter-spacing:-1px;text-align:center;padding:16px 0 4px;}
+
+/* Summary */
+.p-sum-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #E8E8ED;}
+.p-sum-row:last-child{border-bottom:none;}
+.p-sum-row .plbl{font-size:14px;color:#8E8E93;}
+.p-sum-row .pval{font-size:15px;font-weight:700;color:#1C1C1E;}
+
+/* Coverage big */
+.p-cov-big{background:linear-gradient(135deg,#F0EEFF 0%,#E8F0FF 100%);border-radius:20px;padding:24px;text-align:center;}
+.p-cov-big .p-days-num{font-size:72px;font-weight:700;color:#5B3FEA;line-height:1;letter-spacing:-3px;}
+.p-cov-big .p-days-label{font-size:18px;font-weight:600;color:#5B3FEA;margin-top:4px;}
+.p-cov-big .p-days-sub{font-size:13px;color:#8E8E93;margin-top:8px;line-height:1.4;}
+.p-cov-prog-track{height:10px;background:rgba(91,63,234,0.15);border-radius:5px;overflow:hidden;margin:16px 0 8px;}
+.p-cov-prog-fill{height:100%;background:linear-gradient(90deg,#5B3FEA,#7B5EF0);border-radius:5px;}
+
+/* Info box */
+.p-info{background:#F5F5FF;border-radius:14px;padding:14px 16px;display:flex;gap:10px;}
+.p-info p{font-size:13px;color:#4A4A6A;line-height:1.5;}
+
+/* Notification */
+.p-notif-card{background:rgba(255,255,255,0.95);border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 4px 20px rgba(0,0,0,0.12);margin-bottom:10px;backdrop-filter:blur(20px);}
+.p-notif-ico{width:36px;height:36px;border-radius:9px;background:#5B3FEA;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.p-notif-content h4{font-size:14px;font-weight:700;color:#1C1C1E;margin-bottom:2px;}
+.p-notif-content p{font-size:13px;color:#444;line-height:1.4;}
+.p-notif-content .pnt{font-size:11px;color:#8E8E93;margin-top:3px;}
+
+/* Before/after */
+.p-ba-box{flex:1;border-radius:12px;padding:14px;text-align:center;}
+.p-ba-box.before{background:#F0EEFF;}
+.p-ba-box.after{background:#FFF0F0;}
+.p-ba-box .ba-num{font-size:26px;font-weight:700;letter-spacing:-1px;margin:6px 0 4px;}
+.p-ba-box.before .ba-num{color:#5B3FEA;}
+.p-ba-box.after .ba-num{color:#FF453A;}
+.p-ba-label{font-size:11px;color:#8E8E93;font-weight:500;}
+.p-ba-days{font-size:12px;font-weight:600;margin-top:4px;}
+.p-ba-box.before .p-ba-days{color:#30D158;}
+.p-ba-box.after .p-ba-days{color:#FF453A;}
+
+/* Lead B */
+.p-lead-b-header{background:linear-gradient(135deg,#3B6ED4 0%,#1E3A82 55%,#0D1B46 100%);padding:60px 24px 30px;text-align:center;color:white;position:relative;}
+.p-badge-independent{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.18);color:white;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:600;margin-bottom:16px;}
+
+/* Aman scard actions */
+.p-scard-actions{display:flex;gap:8px;margin-top:16px;}
+.p-scard-action-btn{flex:1;border:1.5px solid rgba(255,255,255,0.5);border-radius:22px;padding:9px 8px;color:white;background:transparent;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;}
+
+/* Discovery card */
+.p-discovery-card{background:linear-gradient(135deg,#F0EEFF 0%,#E8F0FF 100%);border:1.5px solid rgba(91,63,234,0.2);border-radius:18px;padding:20px;margin-bottom:12px;position:relative;overflow:hidden;}
+
+/* Numpad */
+.p-numpad{background:#D1D1D6;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;padding-top:1px;flex-shrink:0;}
+.p-numpad-key{background:white;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 4px;cursor:pointer;transition:background 0.1s;user-select:none;}
+.p-numpad-key:active{background:#D1D1D6;}
+.p-numpad-key .pnum{font-size:24px;font-weight:400;color:#1C1C1E;}
+.p-numpad-key .palpha{font-size:10px;font-weight:500;color:#8E8E93;letter-spacing:0.08em;}
+
+/* Members */
+.p-members{background:white;border-radius:24px 24px 0 0;padding:22px 20px 12px;margin-top:auto;}
+.p-members h3{font-size:20px;font-weight:700;margin-bottom:16px;color:#1C1C1E;}
+.p-member-row{display:flex;gap:16px;}
+.p-member-item{display:flex;flex-direction:column;align-items:center;gap:8px;width:68px;}
+.p-member-item .mname{font-size:12px;font-weight:500;color:#1C1C1E;text-align:center;}
+.p-badge-me{font-size:10px;font-weight:700;padding:2px 8px;border-radius:8px;background:#5B3FEA;color:white;}
+.p-new-member{width:68px;height:68px;border-radius:50%;border:2.5px dashed #E8E8ED;display:flex;align-items:center;justify-content:center;font-size:24px;color:#8E8E93;background:transparent;cursor:pointer;}
+.p-aman-mini{background:linear-gradient(135deg,#3B6ED4 0%,#0D1B46 100%);border-radius:18px;padding:18px 20px;margin-bottom:12px;color:white;position:relative;overflow:hidden;}
+
+
+
+/* ─── PROTO SCALE WRAPPER — scales all screen content to fit sidebar ─── */
+.proto-scale-wrap {
+  position: absolute;
+  inset: 0;
+  zoom: 0.67;
+  overflow: hidden;
+}
+/* Allow pscreens to fill the zoomed container */
+.pscreen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  background: #F2F2F7;
+}
+.pscreen.active { display: flex; }
+
+/* ─── PROTOTYPE: scoped CSS vars ─────────────────────────────── */
+.phone-frame {
+  --p: #5B3FEA; --p-dark: #3D2AAA; --p-light: #F0EEFF;
+  --bg: #F2F2F7; --text: #1C1C1E; --sub: #8E8E93;
+  --card: #FFFFFF; --border: #E8E8ED;
+  --green: #30D158; --red: #FF453A;
+  --grad-save: linear-gradient(135deg,#7B4EE0 0%,#3B2A8A 55%,#1A1248 100%);
+  --grad-aman: linear-gradient(135deg,#3B6ED4 0%,#1E3A82 55%,#0D1B46 100%);
+}
+.p-chip-row{display:flex;gap:8px;flex-wrap:wrap;}
+.p-badge-rec{display:inline-flex;align-items:center;gap:4px;background:#E8FFE8;color:#1E7A3A;border-radius:10px;padding:3px 8px;font-size:11px;font-weight:700;margin-top:6px;}
+.p-slider-val-sub{text-align:center;font-size:13px;color:#8E8E93;}
+.p-slider-labels{display:flex;justify-content:space-between;margin-top:10px;}
+.p-slider-labels span{font-size:12px;color:#8E8E93;}
+.p-cov-prog-labels{display:flex;justify-content:space-between;font-size:12px;color:#8E8E93;}
+.p-withdraw-preview{background:white;border-radius:18px;padding:20px;margin-bottom:16px;}
+.p-before-after{display:flex;gap:10px;margin-bottom:16px;}
+.p-ba-box{flex:1;border-radius:12px;padding:14px;text-align:center;}
+.p-ba-box.before{background:#F0EEFF;}.p-ba-box.after{background:#FFF0F0;}
+.p-ba-num{font-size:26px;font-weight:700;letter-spacing:-1px;margin:6px 0 4px;}
+.p-ba-box.before .p-ba-num{color:#5B3FEA;}.p-ba-box.after .p-ba-num{color:#FF453A;}
+.p-ba-label{font-size:11px;color:#8E8E93;font-weight:500;}
+.p-ba-days{font-size:12px;font-weight:600;margin-top:4px;}
+.p-ba-box.before .p-ba-days{color:#30D158;}.p-ba-box.after .p-ba-days{color:#FF453A;}
+.p-setup-body{padding:24px 22px;flex:1;display:flex;flex-direction:column;gap:20px;}
+
+/* ─── FOOTER ────────────────────────────────────────────────── */
+footer{background:var(--navy);padding:60px 48px;text-align:center;border-top:1px solid rgba(242,184,160,0.08);}
+.footer-logo{font-size:28px;font-weight:600;color:var(--blush);letter-spacing:-1px;margin-bottom:14px;}
+footer p{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;}
+footer strong{color:var(--blush);}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────── */
+/* Scale phone content to fit dynamic frame */
+.phone-frame{transform-origin:top center;}
+.phone-frame .p-hero h1{font-size:clamp(18px,4vw,26px);padding:8px 18px 12px;}
+.phone-frame .p-setup-title{font-size:clamp(16px,3.5vw,20px);}
+.phone-frame .p-amt-big{font-size:clamp(36px,7vw,50px);}
+.phone-frame .p-slider-val{font-size:clamp(28px,5vw,34px);}
+.phone-frame .p-days-num{font-size:clamp(40px,8vw,56px);}
+.phone-frame .p-numpad-key .pnum{font-size:clamp(16px,3vw,20px);}
+.phone-frame .p-content{padding:16px 14px 80px;}
+.phone-frame .p-tabs{gap:5px;padding:0 12px;}
+.phone-frame .p-tab{padding:7px 12px;font-size:11px;}
+.phone-frame .p-scard{padding:14px;}
+.phone-frame .p-scard h3{font-size:14px;}
+
+@media(max-width:900px){
+  nav{padding:0 20px;}.nav-links{display:none;}
+  .hero{padding:80px 20px 60px;}.container{padding:0 20px;}
+  .pain-grid,.mech-grid,.metrics-row,.res-grid,.disciplines-grid,.stats-grid{grid-template-columns:1fr;}
+  .building-stage{flex-direction:column;gap:40px;padding:0 20px;}
+  .building-right{width:100%;}.building-left{width:100%;}
+  #building-svg-wrap{width:100%;max-width:280px;margin:0 auto;}
+  .story-card{position:relative;top:auto;transform:none;opacity:1;}
+  .phone-frame{width:320px;height:693px;border-radius:44px;}
+}
+
+/* utility */
+.divider{height:1px;background:var(--grey2);margin:40px 0;}
+.hi{display:inline;background:rgba(87,0,201,0.08);color:var(--navy);padding:1px 5px;border-radius:4px;font-weight:600;}
+
+/* SVG icons */
+.icon-svg{display:inline-flex;align-items:center;justify-content:center;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Wio Family<em>Aman</em></div>
+  <ul class="nav-links">
+    <li><a href="#stats-section">Data</a></li>
+    <li><a href="#challenge">Challenge</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#solution">Solution</a></li>
+    <li><a href="#prototype-section">Prototype</a></li>
+    <li><a href="#execution">Execution</a></li>
+    <li><a href="#calculations">Numbers</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-pill">Associate Home Task · by Keya Shah</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Next High-Impact Feature Proposal</div>
+    <h1>Wio Family<br><span class="blush">Aman.</span><br><span class="dim">أمان</span></h1>
+    <p class="hero-sub">A shared, auto-building family safety space that is set once, runs in the background, and accessible to both Family Leads whenever it matters most.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-label">Feature</span><span class="hero-meta-value">Family Safety Buffer</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">MVP Timeline</span><span class="hero-meta-value">4-6 Weeks</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-label">Primary Impact</span><span class="hero-meta-value">Engagement + Deposits + NPS</span></div>
+
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll to explore</span>
+      <div class="hero-scroll-arrow">↓</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- STATS SECTION -->
+<section class="section" id="stats-section" style="background:var(--blush3);">
+<div class="container">
+  <div class="section-eyebrow" style="color:var(--navy);">The Underlying Data</div>
+  <div class="stats-grid">
+    <div class="stat-cell">
+      <div class="stat-num"><span>68%</span></div>
+      <div class="stat-label">of UAE expat residents have less than 3 months of expenses saved</div>
+      <div class="stat-src">
+      Source: 
+      <a href="https://www.fiduciaadamantina.ae/blog/how-to-build-an-emergency-fund-uae#:~:text=According%20to%20a%20recent%20survey,fund%2C%20or%20investment%20opportunity%20fund." target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline;">
+        UAE bank survey, 2024
+      </a>
+    </div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num"><span>50%</span></div>
+      <div class="stat-label">of UAE residents could not cover expenses beyond 2 weeks without income</div>
+      <div class="stat-src">
+      Source: 
+      <a href="https://www.gulftoday.ae/Lifestyle/2024/09/17/Over-50-of-UAE-residents-spend-more-than-they-earn" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline;">
+        Yabi Financial Health Report, 2024
+      </a>
+    </div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">AED<br><span style="font-size:clamp(28px,3vw,42px);">183B</span></div>
+      <div class="stat-label">in outward remittances — most families carry cross-border financial obligations</div>
+      <div class="stat-src">
+        Source: 
+      <a href="https://www.centralbank.ae/media/p2rpafum/cbuae-fsr-report_2025_en.pdf" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline;">
+        CBUAE, 2024
+      </a></div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num"><span>54%</span></div>
+      <div class="stat-label">of UAE residents cite rising living costs as their top concern for 2026</div>
+      <div class="stat-src">Source: 
+      <a href="https://gulfnews.com/your-money/saving-investment/uae-expats-still-prioritise-saving-in-2026-but-refuse-to-give-up-living-large-1.500399287" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline;">
+        Toluna survey, 2025/26
+      </a></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;">
+    <div style="background:var(--navy);border-radius:var(--r);padding:32px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(242,184,160,0.1) 0%,transparent 70%);"></div>
+      <div style="font-size:clamp(28px,4vw,44px);font-weight:600;color:var(--blush);letter-spacing:-2px;line-height:1;margin-bottom:10px;">AED 900K<br><span style="font-size:0.55em;opacity:0.6;">to 1.8M</span></div>
+      <div style="font-size:14px;font-weight:400;color:rgba(255,255,255,0.6);line-height:1.5;">estimated cost of raising one child in the UAE across 18 years — school, healthcare, and everything in between</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:8px;font-style:italic;">Conscious Finance Coaching, 2024</div>
+    </div>
+    <div style="background:var(--white);border-radius:var(--r);padding:32px;border:1px solid var(--grey2);">
+      <div style="font-size:clamp(24px,3.5vw,40px);font-weight:600;color:var(--navy);letter-spacing:-2px;line-height:1;margin-bottom:10px;">Only <span style="color:var(--purple);">46%</span></div>
+      <div style="font-size:14px;font-weight:400;color:var(--grey);line-height:1.5;">of UAE residents with a bonus directed any of it toward an emergency fund. Even those with extra income are not building buffers automatically.</div>
+      <div style="font-size:11px;color:var(--grey2);margin-top:8px;font-style:italic;"><div class="stat-src">Source: 
+      <a href="https://gulfbusiness.com/en/2025/auto/heres-what-gccs-first-smart-vehicle-testing-centre-would-offer/" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline;">
+        Zurich/YouGov 2025
+      </a></div>
+      <div style="margin-top:16px;padding:12px 16px;background:rgba(87,0,201,0.05);border-left:2px solid var(--purple);border-radius:0 var(--rs) var(--rs) 0;font-size:13px;color:var(--navy);">Intent exists. Behavior hasn't followed. That is the gap Aman closes.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 01 CHALLENGE -->
+<section class="section" id="challenge" style="background:var(--white);">
+<div class="container">
+  <div class="section-eyebrow">01: Challenge Understanding</div>
+  <h2 class="section-title">Wio Family built the infrastructure.<br>The behavioral habit hasn't followed.</h2>
+  <p class="section-intro">The problem is not a broken product. It is that saving for emergencies remains manual, inconsistent, and easy to delay.</p>
+
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-header">
+        <div class="pain-icon pi-c">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5700C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h4>Customers</h4>
+      </div>
+      <ul class="pain-list">
+        <li>Emergency money sits in one person's account — the other lead cannot access it in a crisis</li>
+        <li>No sense of "how long could we survive" — the balance is abstract, not visceral</li>
+        <li>Financial planning is reactive, triggered by crisis rather than built by habit</li>
+      </ul>
+    </div>
+    <div class="pain-card">
+      <div class="pain-header">
+        <div class="pain-icon pi-o">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4845A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        </div>
+        <h4>Ops / Compliance / Tech</h4>
+      </div>
+      <ul class="pain-list">
+        <li>Household-level metrics need new instrumentation beyond individual tracking</li>
+        <li>Auto-transfers require CBUAE-compliant consent and minor access guardrails</li>
+        <li>In-app comms must be airtight to prevent unexpected CS load spikes</li>
+      </ul>
+    </div>
+    <div class="pain-card">
+      <div class="pain-header">
+        <div class="pain-icon pi-b">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F1B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h4>Business</h4>
+      </div>
+      <ul class="pain-list">
+        <li>250K customers need deeper per-household revenue, not just more acquisition</li>
+        <li>Shallow engagement builds no switching cost; Liv at ~500K is closing the gap</li>
+        <li>AED 49/month fee demands sustained value; low engagement drives churn directly</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="font-size:20px;font-weight:600;margin-bottom:18px;">Key Assumptions</h3>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="assumption"><strong>Assumption A</strong><p>Most Wio Family users activate the account but show low ongoing engagement — minimal transfers, low interaction post-setup. Consistent with behavioral patterns in similar digital banking launches globally.</p></div>
+    <div class="assumption"><strong>Assumption B</strong><p>Salaries land in Wio Personal (SAL code), and transfers to Family are manual rather than automated. The bridge between income and saving is not built.</p></div>
+    <div class="assumption"><strong>Assumption C</strong><p>Most Wio Family households lack a jointly-accessible emergency buffer. Supported by Yabi and UAE bank survey data — intent to save exists; the automated mechanism does not.</p></div>
+    <div class="assumption"><strong>Assumption D</strong><p>A significant share of households are single-income. The non-earning lead has limited independent financial access in a crisis if savings sit in the earner's personal account. A survey deployed among my community (72 respondents) supports this as a real, not hypothetical, concern.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- 02 RESEARCH -->
+<section class="section" id="research" style="background:var(--offwhite);">
+<div class="container">
+  <div class="section-eyebrow">02: Data, Insights & Research Approach</div>
+  <h2 class="section-title">What I'd want to see,<br>and where I'd find it.</h2>
+  <p class="section-intro">The complete research framework: data sources, questions, and patterns.</p>
+
+
+  <!-- Survey Callout -->
+  <div style="background:var(--white);border-radius:20px;border:1px solid var(--grey2);padding:36px 40px;margin-bottom:40px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-30px;right:-30px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(87,0,201,0.06) 0%,transparent 70%);"></div>
+    <div style="display:flex;align-items:flex-start;gap:32px;position:relative;z-index:1;">
+      <div style="flex-shrink:0;text-align:center;">
+        <div style="font-size:clamp(40px,5vw,56px);font-weight:600;color:var(--purple);letter-spacing:-2px;line-height:1;">72</div>
+        <div style="font-size:12px;font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;">responses</div>
+      </div>
+      <div style="flex:1;">
+        <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(87,0,201,0.07);color:var(--purple);border-radius:14px;padding:4px 12px;font-size:11px;font-weight:700;letter-spacing:0.04em;margin-bottom:10px;">PRIMARY RESEARCH</div>
+        <div style="font-size:18px;font-weight:600;color:var(--navy);margin-bottom:6px;">Survey across UAE families from varied income levels and home countries</div>
+        <div style="font-size:14px;color:var(--grey);line-height:1.6;margin-bottom:20px;">We ran a short survey to validate assumptions before proposing a solution. Here are the four signals that shaped the direction.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div style="background:var(--offwhite);border-radius:12px;padding:16px;border-left:3px solid var(--purple);"><div style="font-size:24px;font-weight:600;color:var(--purple);letter-spacing:-1px;margin-bottom:4px;">68%</div><div style="font-size:13px;color:var(--grey);line-height:1.45;">are shared decision-makers (only 14% primary), and 82% jointly manage expenses. Ownership of execution is diffused.</div></div>
+          <div style="background:var(--offwhite);border-radius:12px;padding:16px;border-left:3px solid var(--purple);"><div style="font-size:24px;font-weight:600;color:var(--purple);letter-spacing:-1px;margin-bottom:4px;">64%</div><div style="font-size:13px;color:var(--grey);line-height:1.45;">report full financial awareness, yet 55% still cite saving or emergency buffers as key stress. Intent exists, action is inconsistent.</div></div>
+          <div style="background:var(--offwhite);border-radius:12px;padding:16px;border-left:3px solid var(--purple);"><div style="font-size:24px;font-weight:600;color:var(--purple);letter-spacing:-1px;margin-bottom:4px;">33%</div><div style="font-size:13px;color:var(--grey);line-height:1.45;">struggle with saving enough and 22% with emergency buffers. A clear need without a system to support it.</div></div>
+          <div style="background:var(--offwhite);border-radius:12px;padding:16px;border-left:3px solid var(--purple);"><div style="font-size:24px;font-weight:600;color:var(--purple);letter-spacing:-1px;margin-bottom:4px;">~20%</div><div style="font-size:13px;color:var(--grey);line-height:1.45;">highlight emergency access, support, or fund control concerns. Access in crises is uncertain or inaccessible when needed.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this,'quant')">Quantitative Data</button>
+    <button class="tab" onclick="switchTab(this,'qual')">Qualitative Signals</button>
+    <button class="tab" onclick="switchTab(this,'sq')">Stakeholder Questions</button>
+    <button class="tab" onclick="switchTab(this,'patterns')">Patterns to Look For</button>
+    <button class="tab" onclick="switchTab(this,'comp')">Competitive Landscape</button>
+  </div>
+
+  <div id="tab-quant" class="tab-panel active">
+    <div class="res-grid">
+      <div class="res-card">
+        <h4>Internal Wio Data</h4>
+        <ul class="pain-list">
+          <li><strong>Family activation rate</strong>: % of Personal users who activate and invite family after seeing the prompt</li>
+          <li><strong>Manual transfer frequency</strong>: how often do leads move money from Personal to Family?</li>
+          <li><strong>SAL detection rate</strong>: % of Family Lead Personal accounts with monthly SAL credit</li>
+          <li><strong>Saving Space creation rate</strong>: % of Family accounts with at least one named space</li>
+          <li><strong>Fixed Saving Space balance distribution</strong>: meaningful amounts or nominal?</li>
+          <li><strong>Churn triggers</strong>: behavioral patterns that precede cancellation</li>
+        </ul>
+      </div>
+      <div class="res-card">
+        <h4>External Market Data</h4>
+        <ul class="pain-list">
+          <li><strong>68%</strong> of UAE expats have under 3 months saved — UAE bank survey, 2024</li>
+          <li><strong>50%</strong> cannot cover 2 weeks without income — Yabi, 2024</li>
+          <li><strong>46%</strong> directing bonus to emergency savings — Zurich/YouGov, 2025</li>
+          <li><strong>AED 183B</strong> outward remittances — CBUAE, 2024</li>
+          <li><strong>AED 900K–1.8M</strong> cost of raising a child in UAE — Conscious Finance Coaching, 2024</li>
+          <li><strong>54%</strong> cite rising costs as #1 concern — Toluna, 2025/26</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-qual" class="tab-panel">
+    <div class="res-grid">
+      <div class="res-card">
+        <h4>Qualitative Sources</h4>
+        <ul class="pain-list">
+          <li><strong>Support tickets</strong>: search "emergency," "access," "transfer," "salary" to see friction in users' own words</li>
+          <li><strong>App Store reviews (1–3 star)</strong>: almost always contain unfiltered product gaps</li>
+          <li><strong>UAE expat parent WhatsApp groups</strong>: real financial conversations happen here, not in surveys</li>
+          <li><strong>A quick survey I deployed</strong>: Google Form sent to UAE residents with families. 72 respondents. Early signals show financial decision-making is more shared than assumed, with top two stressors being insufficient savings and no emergency fund</li>
+          <li><strong>Depth interviews</strong>: 6–8 Family Lead users across dual-income, single-income, with helper, without</li>
+        </ul>
+      </div>
+      <div class="res-card">
+        <h4>Preliminary Signal</h4>
+        <div class="assumption" style="margin-bottom:12px">
+          <strong>From the quick survey</strong>
+          <p>Financial decision-making is more shared than assumed, but execution is not. Both partners are aware of finances, yet no structured system exists to act on it consistently. This points to a clear gap: not awareness, but lack of a shared mechanism. It strengthens the case for a joint, automated buffer.</p>
+        </div>
+        <div class="assumption">
+          <strong>First-person observation</strong>
+          <p>I am a Wio Family user. I use my personal account for spending and the Fixed Family savings space only for interest. In practice, the Family account functions as a passive storage layer, not an active financial tool. This is the core opportunity: shifting from a place to keep money to a system that manages it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-sq" class="tab-panel">
+    <div class="sq-item"><div class="sq-who">Product / Data</div><div class="sq-q">What percentage of Family accounts have zero manual transfers from Personal in the first 30 days — and what does that cohort's 90-day retention look like versus those who do transfer?</div><div class="sq-why">Tells us whether transfer friction drives disengagement, or whether low-transfer users are simply satisfied with the current product.</div></div>
+    <div class="sq-item"><div class="sq-who">Engineering</div><div class="sq-q">Is the SAL code reliably detected and logged for Personal account credits today — and what would building a conditional transfer rule that fires X days after a SAL event require, given existing standing instruction infrastructure?</div><div class="sq-why">Determines whether the core mechanic is a 2-week build or a 3-month build. This changes MVP scope entirely.</div></div>
+    <div class="sq-item"><div class="sq-who">Compliance / Legal</div><div class="sq-q">What consent and disclosure does CBUAE mandate for a recurring auto-transfer rule a user sets up on their own account — and is a Personal-to-Family transfer within the same bank treated the same as an external standing order?</div><div class="sq-why">Non-negotiable to understand before design begins. Extra compliance screens could break the two-minute setup promise.</div></div>
+    <div class="sq-item"><div class="sq-who">Compliance</div><div class="sq-q">Can a pre-configured emergency access designation — allowing one Family Lead to access a Family Saving Space independently without co-approval — be built within existing account structure?</div><div class="sq-why">This is the feature's most powerful differentiator. Must know early if there is a regulatory constraint.</div></div>
+    <div class="sq-item"><div class="sq-who">Customer Support</div><div class="sq-q">What are the most common Family account support contacts — specifically around transfers, access, or "my partner cannot see the money"?</div><div class="sq-why">Support tickets are the best unfiltered signal. One month of Family-related tickets validates or invalidates our core assumptions.</div></div>
+    <div class="sq-item"><div class="sq-who">Operations</div><div class="sq-q">Are there any manual steps in the Family account setup or change flow that would break at 10x current volume — before we drive significant new activations?</div><div class="sq-why">Any ops bottleneck needs automating before launch. Identify it now, not after the GTM campaign fires.</div></div>
+  </div>
+
+  <div id="tab-patterns" class="tab-panel">
+    <div class="res-grid">
+      <div class="res-card">
+        <h4>Transaction Patterns to Analyze</h4>
+        <ul class="pain-list">
+          <li><strong>Salary day clustering</strong>: do transfers to Family cluster around the day after SAL credit? Yes signals intent; no signals friction as the gap.</li>
+          <li><strong>Balance seasonality</strong>: do Family balances spike in January/bonus season then decline? Yes signals episodic saving that automation would replace.</li>
+          <li><strong>Dormancy cohorts</strong>: % of Family accounts with zero inflow for 60+ days — these are the re-engagement targets.</li>
+          <li><strong>Saving Space naming</strong>: are users already naming spaces "emergency" or "rainy day"? Intent without mechanism.</li>
+          <li><strong>Dual-salary detection</strong>: Family accounts where both leads show SAL credits — the segment with highest Aman adoption potential.</li>
+        </ul>
+      </div>
+      <div class="res-card">
+        <h4>Segments to Prioritize</h4>
+        <ul class="pain-list">
+          <li><strong>Segment A — Active families:</strong> both leads use Wio regularly. Highest Aman adoption potential.</li>
+          <li><strong>Segment B — Passive leads:</strong> account activated, space created, minimal activity. Aman auto-contribution is the re-engagement trigger.</li>
+          <li><strong>Segment C — Single-income:</strong> one SAL detected, other lead has zero personal income. Highest vulnerability and emotional resonance.</li>
+          <li><strong>Segment D — Helper households:</strong> higher fixed costs, higher Aman target, higher stakes.</li>
+          <li><strong>Segment E — Wio Personal only:</strong> have not activated Family. Aman is the acquisition hook.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-comp" class="tab-panel">
+    <div style="overflow-x:auto;background:var(--white);border-radius:var(--r);border:1px solid var(--grey2);">
+    <table class="comp-table">
+      <thead><tr><th>Product</th><th>Shared Account</th><th>Emergency Buffer</th><th>Auto-Contribution</th><th>Dual-Lead Access</th><th>Runway Visibility</th><th>UAE-Native</th></tr></thead>
+      <tbody>
+        <tr class="wrow"><td><strong>Wio Family + Aman (proposed)</strong></td><td class="ck">✓</td><td class="ck">✓ Named + purpose-built</td><td class="ck">✓ SAL-triggered</td><td class="ck">✓ Both leads</td><td class="ck">✓ Days covered</td><td class="ck">✓</td></tr>
+        <tr><td>Wio Family (current)</td><td class="ck">✓</td><td class="cx">✗ Generic saving space</td><td class="cx">✗ Manual only</td><td class="ck">✓</td><td class="cx">✗</td><td class="ck">✓</td></tr>
+        <tr><td>Liv (Emirates NBD)</td><td class="cx">✗ Basic</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td><td class="ck">✓</td></tr>
+        <tr><td>Zywa</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td><td class="cx">✗</td><td class="ck">✓</td></tr>
+        <tr><td>Traditional UAE banks</td><td class="cx">✗ Complex joint</td><td class="cx">✗</td><td class="cx">✗ Individual only</td><td class="cx">✗ One holder</td><td class="cx">✗</td><td class="ck">✓</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="assumption" style="margin-top:16px"><strong>What this highlights</strong><p>No UAE banking product has built a shared, auto-funded, jointly-accessible emergency buffer with dual-lead access and real-time runway visibility. Wio Family with Aman would be category-first in the UAE market.</p></div>
+  </div>
+</div>
+</section>
+
+<!-- 03 ROOT CAUSES -->
+<section class="section" id="rootcause" style="background:var(--navy);">
+<div class="container">
+  <div class="section-eyebrow">03: Root Cause Hypotheses</div>
+  <h2 class="section-title">What is really driving this behavior</h2>
+  <p class="section-intro">UAE families are aware they should save. The gap is not intent — it is execution. Product structure, behavioral defaults, and access limitations make consistent, family-level saving unlikely.</p>
+
+  <div style="display:flex;flex-direction:column;gap:24px;">
+    <div class="rc-card">
+      <div class="rc-num">Root Cause 01</div>
+      <h4>Low urgency, high friction — saving is deprioritized when nothing is wrong</h4>
+      <p>Most families operate in a comfortable present. Emergencies feel distant, so saving is continuously delayed. High living costs and recurring obligations (rent, school fees, remittances) consume available income. Even when intent exists, there is no immediate trigger or system to convert it into action.</p>
+      <div class="rc-persist"><strong>Why it persists:</strong> Saving requires an active decision every month. Without automation or a clear trigger like salary, the default behavior is inaction.</div>
+    </div>
+    <div class="rc-card">
+      <div class="rc-num">Root Cause 02</div>
+      <h4>The access gap — family safety depends on one person</h4>
+      <p>In many households, savings sit in one individual's account. In a disruption — illness, travel, job loss — the rest of the family may not be able to access funds quickly. This turns a financial buffer into a delayed or unusable one.</p>
+      <div class="rc-persist"><strong>Why it persists:</strong> Financial products are structured at an individual level. Even when shared accounts exist, the emergency access use case is not explicitly designed or communicated.</div>
+    </div>
+    <div class="rc-card">
+      <div class="rc-num">Root Cause 03</div>
+      <h4>The manual transfer gap — income flows in, but saving doesn't follow</h4>
+      <p>Salaries land in Personal accounts, while Family accounts require manual funding. This creates a consistent drop-off: users intend to transfer money, but don't do it regularly. Over time, the family buffer remains underfunded or unused.</p>
+      <div class="rc-persist"><strong>Why it persists:</strong> There is no automated bridge between income and saving. Without a default rule, behavior depends on memory and discipline — which is unreliable.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 04 SOLUTION + PROTOTYPE -->
+<section class="section" id="solution" style="background:var(--white);">
+<div class="container">
+  <div class="section-eyebrow">04: Proposed Solution</div>
+  <h2 class="section-title">Wio Family Aman.</h2>
+
+  <div class="solution-split">
+    <!-- LEFT: Solution content -->
+    <div class="solution-left">
+
+  <div class="feature-hero-block" style="margin-bottom:32px;">
+    <div class="fhb-inner">
+      <div class="feature-name">Aman</div>
+      <div class="feature-arabic">أمان — peace. security. safety.</div>
+      <div class="feature-tagline">A shared, auto-building family safety buffer. Set once, salary-triggered, accessible to both Family Leads the moment it matters.</div>
+      <div class="pills">
+        <div class="pill">Dual-Lead Instant Access</div>
+        <div class="pill">Days Covered, Not AED Balance</div>
+        <div class="pill">SAL-Triggered Auto-Contribution</div>
+        <div class="pill">Minimum Balance Guardrail</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="assumption" style="margin-bottom:32px;border-left-color:var(--blush);background:rgba(242,184,160,0.05);border-color:rgba(242,184,160,0.2);">
+    <strong style="color:var(--blush)">Why "Aman"?</strong>
+    <p>Aman (أمان) means safety and peace in Arabic — understood instantly across the UAE's multicultural population. It does not translate to "emergency fund." It translates to peace of mind.</p>
+  </div>
+
+  <h3 style="font-size:20px;font-weight:600;margin-bottom:20px;">The Auto-Contribution Flow</h3>
+  <div class="flow-block" style="margin-bottom:32px">
+    <div class="flow-label">What happens every salary day — automatically</div>
+    <div class="flow-row">
+      <div class="fi"><div class="fi-main">SAL Credit Detected</div><div class="fi-sub">On Wio Personal</div></div>
+      <div class="fa">→</div>
+      <div class="fc">Wait 2 days<br>(bill buffer)</div>
+      <div class="fa">→</div>
+      <div class="fi"><div class="fi-main">Balance Check</div><div class="fi-sub">Above floor?</div></div>
+      <div class="fa">→</div>
+      <div class="fi"><div class="fi-main">Auto-Transfer</div><div class="fi-sub">AED X to Aman</div></div>
+      <div class="fa">→</div>
+      <div class="fi"><div class="fi-main">Both Leads Notified</div><div class="fi-sub">"34 days covered"</div></div>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:rgba(255,255,255,0.3)">Tight month: transfer skips silently, resumes next cycle. The aim is to not demotivate or break confidence. For those who don't get SAL-tagged salary, please refer to FAQ section</div>
+  </div>
+
+  <h3 style="font-size:20px;font-weight:600;margin-bottom:16px;">The Four Core Mechanics</h3>
+  <div class="mech-grid" style="margin-bottom:36px">
+    <div class="mech-card">
+      <div class="mech-icon-wrap" style="background:rgba(87,0,201,0.08);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5700C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <h4>SAL-Triggered Auto-Contribution</h4>
+      <p>Salary credit detected, transfer fires 2 days later. Set once, runs every month. No manual action required.</p>
+      <div class="mech-tag">Core Mechanic</div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-icon-wrap" style="background:rgba(242,184,160,0.15);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4845A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h4>Minimum Balance Guardrail</h4>
+      <p>Users define a floor (default AED 3,000). Transfer only fires if it leaves them above that floor. Tight month: silent skip.</p>
+      <div class="mech-tag">Edge Case Design</div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-icon-wrap" style="background:rgba(87,0,201,0.08);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5700C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      </div>
+      <h4>Family Coverage Meter</h4>
+      <p>"Days covered" not a raw AED balance. Calculated from actual household spending. Target: 90 days.</p>
+      <div class="mech-tag">Data Layer</div>
+    </div>
+    <div class="mech-card">
+      <div class="mech-icon-wrap" style="background:rgba(242,184,160,0.15);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4845A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+      </div>
+      <h4>Dual-Lead Instant Access</h4>
+      <p>Both leads access the space independently. No co-approval in an emergency. No card attached means no accidental spending.</p>
+      <div class="mech-tag">Key Differentiator</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;">User Journey</h3>
+  <p style="font-size:14px;color:var(--grey);margin-bottom:20px;">From discovery to real emergency access.</p>
+
+  <div class="card" style="background:var(--offwhite);border:1px solid var(--grey2);border-radius:var(--r);padding:24px;margin-bottom:32px;">
+    <div class="journey-step"><div class="jnum">1</div><div class="jcontent"><h4>Discovery — multiple entry points</h4><p>Current Family users see an in-app announcement after login. New Family users discover Aman during onboarding or in the Family Saving Spaces tab. Salary-credit day and Pocket creation moments surface additional prompts. <button class="read-more-btn" onclick="openModal('modal-journey1')">Read more</button></p></div></div>
+    <div class="journey-step"><div class="jnum">2</div><div class="jcontent"><h4>Setup — 4 screens, under 2 minutes</h4><p>Amount, timing, floor, confirmation. Pre-filled from income data. One tap. Done. <button class="read-more-btn" onclick="openModal('modal-journey2')">Read more</button></p></div></div>
+    <div class="journey-step"><div class="jnum">3</div><div class="jcontent"><h4>Monthly contribution — automatic</h4><p>SAL detected, wait, balance check, transfer, both leads notified. "Your Family Aman just grew. 34 days covered."</p></div></div>
+    <div class="journey-step"><div class="jnum">4</div><div class="jcontent"><h4>Tight month — graceful skip</h4><p>Balance check fails. Transfer skips silently. Quiet note: "We kept your contribution in your account this month. Back on track next cycle."</p></div></div>
+    <div class="journey-step"><div class="jnum">5</div><div class="jcontent"><h4>Accessing the fund — friction by design</h4><p>Either lead initiates. One screen: is this a genuine emergency? Tap through immediately in a crisis. Pause in an impulse moment.</p></div></div>
+    <div class="journey-step"><div class="jnum">6</div><div class="jcontent"><h4>Emergency — Lead B accessing alone</h4><p>Lead B opens the app, navigates to Family Aman, confirms, funds move within seconds. No co-approval. No branch visit.</p><div class="jdetail" style="border-left-color:var(--blush);background:rgba(242,184,160,0.08);">This is the scenario no other UAE banking product has solved.</div></div></div>
+    <div class="journey-step"><div class="jnum">7</div><div class="jcontent"><h4>Kids — clear boundary</h4><p>Children with Pockets cannot access Aman. Regulatory and by design. Aman is a Family Lead resource.</p></div></div>
+  </div>
+
+  <h3 style="font-size:20px;font-weight:600;margin-bottom:8px;">How Different Disciplines Contribute</h3>
+  <p style="font-size:14px;color:var(--grey);margin-bottom:20px;font-style:italic;">A full cross-functional team in theory. In practice: me, two other people, and an eye-watering number of Claude Pro tokens.</p>
+  <div class="disciplines-grid" style="margin-bottom:32px;">
+    <div class="disc-card">
+      <div class="disc-icon" style="background:rgba(87,0,201,0.08);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5700C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <h4>Engineering</h4><p>SAL detection exists. New build: rule engine + conditional transfer. ~4–6 weeks on existing rails.</p>
+    </div>
+    <div class="disc-card">
+      <div class="disc-icon" style="background:rgba(87,0,201,0.08);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5700C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+      <h4>Data Science</h4><p>Monthly burn calculation, suggested contribution pre-fill, coverage meter logic. Analytics queries, not ML.</p>
+    </div>
+    <div class="disc-card">
+      <div class="disc-icon" style="background:rgba(242,184,160,0.2);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4845A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <h4>Design / UX</h4><p>Coverage meter, 4-screen setup, withdrawal nudge, dual-lead notification design.</p>
+    </div>
+    <div class="disc-card">
+      <div class="disc-icon" style="background:rgba(87,0,201,0.08);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5700C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0h10m-10 0a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2m0 0V9m0 6v-3"/></svg></div>
+      <h4>Behavioral Science</h4><p>Auto-defaults, commitment device at setup, withdrawal friction, goal-gradient meter.</p>
+    </div>
+    <div class="disc-card">
+      <div class="disc-icon" style="background:rgba(242,184,160,0.2);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4845A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <h4>Compliance</h4><p>Consent architecture, CBUAE framework, minor access restrictions. Consulted Week 1.</p>
+    </div>
+    <div class="disc-card">
+      <div class="disc-icon" style="background:rgba(87,0,201,0.08);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5700C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+      <h4>UX Writing</h4><p>"Days covered" not "balance." "Aman grew" not "Transfer completed." Every word is a design decision.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size:20px;font-weight:600;margin-bottom:16px;">Trade-offs</h3>
+  <div style="background:var(--offwhite);border-radius:var(--r);padding:24px;border:1px solid var(--grey2);margin-bottom:32px;">
+    <div class="to-row"><div class="to-badge bg">Chosen</div><div class="to-text"><strong>Flexible access vs. fixed deposit rate.</strong> Chose ~4% flexible over 6% locked. An emergency fund that is locked is not an emergency fund.</div></div>
+    <div class="to-row"><div class="to-badge bg">Chosen</div><div class="to-text"><strong>SAL-triggered vs. manual recurring.</strong> Auto-trigger is behaviorally superior. Outcome is prioritised over perceived control.</div></div>
+    <div class="to-row"><div class="to-badge ba">Accepted</div><div class="to-text"><strong>Skip mechanic in tight months.</strong> Reduces growth consistency, but an auto-transfer that overdrafts a user defeats the purpose.</div></div>
+    <div class="to-row"><div class="to-badge ba">Deferred</div><div class="to-text"><strong>Multi-currency Aman.</strong> Right for expats. Deferred until Wio supports INR/PKR corridors.</div></div>
+    <div class="to-row"><div class="to-badge br">Rejected</div><div class="to-text"><strong>Fear-based marketing.</strong> "68% of families have no emergency fund" triggers avoidance. Wio's angle: "Your family is covered."</div></div>
+  </div>
+
+  <h3 style="font-size:20px;font-weight:600;margin-bottom:16px;">Success Metrics</h3>
+  <div style="background:var(--purple);border-radius:var(--r);padding:28px;margin-bottom:14px;color:white;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-30px;right:-30px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.06);"></div>
+    <div style="font-size:10px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;margin-bottom:8px;">North Star Metric</div>
+    <div style="font-size:36px;font-weight:600;letter-spacing:-2px;line-height:1;margin-bottom:6px;">30%</div>
+    <div style="font-size:14px;opacity:0.8;line-height:1.5;">of active Family accounts set up Aman within 60 days of launch</div>
+  </div>
+  <div class="metrics-row">
+    <div class="mc"><div class="mc-label">Deposits</div><div class="mc-val">AED 25K</div><div class="mc-desc">avg Aman balance per household after 12 months</div></div>
+    <div class="mc"><div class="mc-label">Retention</div><div class="mc-val">&lt;5%</div><div class="mc-desc">monthly churn among Family accounts with active Aman vs. baseline</div></div>
+    <div class="mc"><div class="mc-label">Behavior</div><div class="mc-val">73%</div><div class="mc-desc">of contributions fire without triggering the balance skip</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px;">
+    <div style="background:var(--offwhite);border-radius:var(--rs);padding:16px;border:1px solid var(--grey2);border-left:3px solid var(--coral);"><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--coral);font-weight:600;margin-bottom:4px;">Guardrail</div><div style="font-size:13px;color:var(--grey);line-height:1.5;">Negative customer feedback on advisor calls about auto-transfers or confusion</div></div>
+    <div style="background:var(--offwhite);border-radius:var(--rs);padding:16px;border:1px solid var(--grey2);border-left:3px solid var(--coral);"><div style="font-size:10px;text-transform:uppercase;letter-spacing:0.08em;color:var(--coral);font-weight:600;margin-bottom:4px;">Guardrail</div><div style="font-size:13px;color:var(--grey);line-height:1.5;">Aman cannibalizing the main Family Saving Space or Fixed Deposit vertical</div></div>
+  </div>
+
+  <h3 style="font-size:20px;font-weight:600;margin-bottom:16px;">Go-to-Market</h3>
+  <div class="assumption" style="margin-bottom:20px;border-color:rgba(242,184,160,0.2);background:rgba(242,184,160,0.05);border-left-color:var(--blush)"><strong style="color:var(--blush)">Core Principle</strong><p>Every competitor asks: "Are you prepared?" Wio says: "Your family is covered." One activates anxiety. The other activates confidence.</p></div>
+  <div class="gtm-item">
+    <div style="width:36px;height:36px;border-radius:10px;flex-shrink:0;background:rgba(87,0,201,0.08);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5700C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+    <div><h4>In-App — existing Family users</h4><p>On next open: coverage meter at "0 days covered," amount pre-filled, one CTA. Highest intent, lowest cost.</p><div class="phase-badge">Week 1</div></div>
+  </div>
+  <div class="gtm-item">
+    <div style="width:36px;height:36px;border-radius:10px;flex-shrink:0;background:rgba(242,184,160,0.15);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D4845A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+    <div><h4>Salary day trigger</h4><p>SAL credit hits a lead without Aman — one message on next open. Money available, intent high.</p><div class="phase-badge">Ongoing</div></div>
+  </div>
+  <div class="gtm-item">
+    <div style="width:36px;height:36px;border-radius:10px;flex-shrink:0;background:rgba(87,0,201,0.08);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5700C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+    <div><h4>WhatsApp</h4><p>Shareable card on Aman setup completion. One parent in a school group reaches 50 families.</p><div class="phase-badge">Week 2–4</div></div>
+  </div>
+  <div class="gtm-item">
+    <div style="width:36px;height:36px;border-radius:10px;flex-shrink:0;background:rgba(87,0,201,0.08);display:flex;align-items:center;justify-content:center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5700C9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+    <div><h4>Wio Business — employer-enabled</h4><p>Family Aman as a financial wellness benefit for 120,000+ business clients. No consumer bank is doing this for emergency savings.</p><div class="phase-badge">Phase 2</div></div>
+  </div>
+
+    </div><!-- /solution-left -->
+
+    <!-- RIGHT: Sticky prototype -->
+    <div class="solution-right" id="prototype-section">
+      <div class="proto-panel">
+        <p class="proto-eyebrow">Interactive Prototype</p>
+        <p style="font-size:11px;color:rgba(255,255,255,0.4);text-align:center;margin:0;margin-bottom:8px;">This represents a high-level gist and the final solution would require proper UI/UX refinement and implementation</p>
+        <div class="proto-controls">
+          <button class="proto-btn" id="protoPrevBtn" onclick="pgo(-1)">← Back</button>
+          <div class="proto-label">
+            <span class="screen-num" id="protoScreenNum">Screen 1 / 13</span>
+            <span class="screen-name" id="protoScreenName">Family Dashboard</span>
+          </div>
+          <button class="proto-btn" id="protoNextBtn" onclick="pgo(1)">Next →</button>
+        </div>
+<div class="phone-frame">
+<div class="proto-scale-wrap">
+
+    <!-- S0: Family Dashboard -->
+    <div class="pscreen active" id="ps0">
+      <div class="p-hero">
+        <div class="p-status">
+          <span class="time">2:26</span>
+          <span class="icons">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="#1a1a2e"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="5" y="2" width="3" height="10" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+            <svg width="26" height="13" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="22" height="12" rx="3.5" stroke="#1a1a2e" stroke-opacity="0.35"/><rect x="1.5" y="1.5" width="17" height="10" rx="2.5" fill="#1a1a2e"/></svg>
+          </span>
+        </div>
+        <h1>Keya's family</h1>
+        <div class="p-tabs">
+          <button class="p-tab on">My family</button>
+          <button class="p-tab off" onclick="pgo(1)">Shared accounts</button>
+          <button class="p-tab off">Shared cards</button>
+        </div>
+      </div>
+
+      <div class="p-content">
+        <div class="p-card-row">
+          <div class="p-card-half" style="padding:18px 16px">
+            <div style="font-size:13px;color:var(--sub)">Total family wealth</div>
+            <div style="font-size:28px;font-weight:300;letter-spacing:-1px;margin:6px 0 8px">AED 30,113<span style="font-size:18px">.25</span></div>
+            <div style="height:1px;background:var(--border);margin:8px 0"></div>
+            <div style="display:flex;gap:12px;margin-top:6px">
+              <span style="font-size:13px;font-weight:700;color:var(--p)">+0.00</span>
+              <span style="font-size:13px;font-weight:700;color:#FF6B6B">-0.00</span>
+            </div>
+          </div>
+          <div class="p-card-half" style="padding:18px 16px">
+            <div style="font-size:13px;color:var(--sub);margin-bottom:12px">Biggest spenders</div>
+            <div class="row" style="margin-bottom:8px">
+              <div class="p-av-sm p-av-mita"><span style="font-size:13px;font-weight:700;color:#5B3FEA">M</span></div>
+              <span style="font-size:14px;font-weight:600">AED 0.00</span>
+            </div>
+            <div class="row">
+              <div class="p-av-sm p-av-keya"><span style="font-size:13px;font-weight:700;color:#6A4A30">K</span></div>
+              <span style="font-size:14px;font-weight:600">AED 0.00</span>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--p);border-radius:18px;padding:18px;color:white;margin-bottom:12px">
+          <div style="font-size:16px;font-weight:700">Rewards</div>
+          <div style="font-size:13px;opacity:0.8;margin-top:4px">See what you've earned together</div>
+        </div>
+      </div>
+
+      <div class="p-members">
+        <h3>My family</h3>
+        <div class="p-member-row">
+          <div class="p-member-item">
+            <div class="p-new-member">+</div>
+            <span class="mname">New member</span>
+          </div>
+          <div class="p-member-item">
+            <div class="p-av" style="width:68px;height:68px;background:#D4C0A8;position:relative">
+              <span style="font-size:26px;font-weight:700;color:#6A4A30">K</span>
+              <span class="p-badge-me" style="position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);white-space:nowrap">Me</span>
+            </div>
+            <span class="mname">Keya</span>
+          </div>
+          <div class="p-member-item">
+            <div class="p-av" style="width:68px;height:68px;background:#C4B0E8;position:relative">
+              <span style="font-size:26px;font-weight:700;color:#5B3FEA">M</span>
+              <span class="p-badge-me" style="position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);white-space:nowrap;background:#5B3FEA">Mother</span>
+            </div>
+            <span class="mname">Mita</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-bottom-nav">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="9" height="9" rx="2" fill="white"/><rect x="16" y="3" width="9" height="9" rx="2" fill="white"/><rect x="3" y="16" width="9" height="9" rx="2" fill="white"/><rect x="16" y="16" width="9" height="9" rx="2" fill="white"/></svg>
+      </div>
+    </div>
+
+    <!-- S1: Shared Accounts -->
+    <div class="pscreen" id="ps1">
+      <div class="p-hero">
+        <div class="p-status">
+          <span class="time">2:26</span>
+          <span class="icons">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="#1a1a2e"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="5" y="2" width="3" height="10" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+            <svg width="26" height="13" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="22" height="12" rx="3.5" stroke="#1a1a2e" stroke-opacity="0.35"/><rect x="1.5" y="1.5" width="17" height="10" rx="2.5" fill="#1a1a2e"/></svg>
+          </span>
+        </div>
+        <h1>Keya's family</h1>
+        <div class="p-tabs">
+          <button class="p-tab off" onclick="pgo(-1)">My family</button>
+          <button class="p-tab on">Shared accounts</button>
+          <button class="p-tab off" onclick="pgo(1)">Shared cards</button>
+        </div>
+      </div>
+      <div class="p-content">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <span style="font-size:18px;font-weight:700">Family accounts</span>
+        </div>
+        <div class="p-card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+            <div class="p-av-pair">
+              <div class="p-av-sm p-av-keya"><span style="font-size:13px;font-weight:700;color:#6A4A30">K</span></div>
+              <div class="p-av-sm p-av-mita"><span style="font-size:13px;font-weight:700;color:#5B3FEA">M</span></div>
+            </div>
+            <div style="background:var(--p);color:white;font-size:12px;font-weight:700;padding:4px 12px;border-radius:14px">Mother</div>
+          </div>
+          <div style="font-size:17px;font-weight:700;margin-bottom:4px">You & Mita Tejesh Shah</div>
+          <div style="font-size:13px;color:var(--sub);margin-bottom:4px">AED account</div>
+          <div style="font-size:26px;font-weight:300;letter-spacing:-1px;margin-bottom:16px">AED 113<span style="font-size:18px">.25</span></div>
+          <div class="row" style="gap:8px">
+            <button class="p-btn p-btn-outline p-btn-sm" style="flex:1">Details</button>
+            <button class="p-btn p-btn-outline p-btn-sm" style="flex:1">Add money</button>
+            <button class="p-btn p-btn-outline p-btn-sm" style="flex:1">Move</button>
+          </div>
+        </div>
+      </div>
+      <div class="p-bottom-nav"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="9" height="9" rx="2" fill="white"/><rect x="16" y="3" width="9" height="9" rx="2" fill="white"/><rect x="3" y="16" width="9" height="9" rx="2" fill="white"/><rect x="16" y="16" width="9" height="9" rx="2" fill="white"/></svg></div>
+    </div>
+
+    <!-- S2: Family Saving Spaces — Discovery -->
+    <div class="pscreen" id="ps2">
+      <div class="p-hero">
+        <div class="p-status">
+          <span class="time">2:26</span>
+          <span class="icons">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="#1a1a2e"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="5" y="2" width="3" height="10" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+            <svg width="26" height="13" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="22" height="12" rx="3.5" stroke="#1a1a2e" stroke-opacity="0.35"/><rect x="1.5" y="1.5" width="17" height="10" rx="2.5" fill="#1a1a2e"/></svg>
+          </span>
+        </div>
+        <h1>Keya's family</h1>
+        <div class="p-tabs">
+          <button class="p-tab off">Shared cards</button>
+          <button class="p-tab on">Family saving spaces</button>
+          <button class="p-tab off">Family rewards</button>
+        </div>
+      </div>
+      <div class="p-content">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <span style="font-size:18px;font-weight:700">Saving spaces</span>
+          <button style="background:var(--p);color:white;border:none;border-radius:20px;padding:8px 16px;font-family:Inter,sans-serif;font-size:13px;font-weight:700;cursor:pointer">Add +</button>
+        </div>
+        <div class="p-scard p-scard-save">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <h3>Family Fixed Saving Space</h3>
+              <div class="psub">For 1 month, till May 7, 2026</div>
+            </div>
+            <div class="p-av-pair">
+              <div class="p-av-sm p-av-keya"><span style="font-size:13px;font-weight:700;color:#6A4A30">K</span></div>
+              <div class="p-av-sm p-av-mita"><span style="font-size:13px;font-weight:700;color:#5B3FEA">M</span></div>
+            </div>
+          </div>
+          <div class="pamount" style="margin-top:16px">AED 25,000<span class="cents">.00</span></div>
+        </div>
+        <div class="p-scard p-scard-save">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <h3>Family Fixed Saving Space</h3>
+              <div class="psub">For 1 month, till May 24, 2026</div>
+            </div>
+            <div class="p-av-pair">
+              <div class="p-av-sm p-av-keya"><span style="font-size:13px;font-weight:700;color:#6A4A30">K</span></div>
+              <div class="p-av-sm p-av-mita"><span style="font-size:13px;font-weight:700;color:#5B3FEA">M</span></div>
+            </div>
+          </div>
+          <div class="pamount" style="margin-top:16px">AED 5,000<span class="cents">.00</span></div>
+        </div>
+        <div class="p-discovery-card" onclick="pgo(1)" style="cursor:pointer">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(91,63,234,0.12);color:var(--p);border-radius:14px;padding:4px 10px;font-size:11px;font-weight:700;margin-bottom:10px;letter-spacing:0.04em">NEW FEATURE</div>
+          <div style="font-size:19px;font-weight:800;color:var(--text);margin-bottom:6px;padding-right:56px">Set up Family Aman</div>
+          <div style="font-size:13px;color:var(--sub);line-height:1.5;padding-right:56px">Your family's shared emergency buffer — auto-filled after salary lands, no manual transfers.</div>
+          <button class="p-btn p-btn-primary p-btn-sm" style="margin-top:14px;width:auto;padding:10px 22px;font-size:13px" onclick="pgo(1)">Set up now →</button>
+        </div>
+      </div>
+      <div class="p-bottom-nav"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="9" height="9" rx="2" fill="white"/><rect x="16" y="3" width="9" height="9" rx="2" fill="white"/><rect x="3" y="16" width="9" height="9" rx="2" fill="white"/><rect x="16" y="16" width="9" height="9" rx="2" fill="white"/></svg></div>
+    </div>
+
+    <!-- S3: Family Aman Intro -->
+    <div class="pscreen" id="ps3" style="background:white">
+      <div style="padding:56px 24px 0;display:flex;align-items:center;justify-content:space-between">
+        <button class="p-back" onclick="pgo(-1)">← Back</button>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;padding:0 24px 32px;overflow-y:auto;scrollbar-width:none">
+        <div style="text-align:center;padding:24px 0 20px">
+          <div style="width:96px;height:96px;background:linear-gradient(135deg,#3B6ED4,#1E3A82);border-radius:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 12px 36px rgba(59,110,212,0.35)">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="white"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div style="font-size:28px;font-weight:800;color:var(--text);line-height:1.2;letter-spacing:-0.5px;margin-bottom:10px">Protect your family,<br>automatically.</div>
+          <div style="font-size:14px;color:var(--sub);line-height:1.6;max-width:300px;margin:0 auto">Family Aman builds your shared emergency buffer — right after salary lands, every month, without thinking about it.</div>
+        </div>
+        <div style="background:var(--bg);border-radius:20px;padding:18px;margin-bottom:20px">
+          <div style="font-size:12px;font-weight:700;color:var(--sub);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px">How it works</div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:flex-start;gap:12px">
+              <div style="width:32px;height:32px;background:rgba(91,63,234,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B3FEA" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div><div style="font-size:14px;font-weight:600;color:var(--text)">Salary detected</div><div style="font-size:13px;color:var(--sub);margin-top:2px">We spot your SAL transfer code</div></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px">
+              <div style="width:32px;height:32px;background:rgba(91,63,234,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B3FEA" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div><div style="font-size:14px;font-weight:600;color:var(--text)">2-day buffer</div><div style="font-size:13px;color:var(--sub);margin-top:2px">Lets you handle immediate bills first</div></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px">
+              <div style="width:32px;height:32px;background:rgba(91,63,234,0.12);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B3FEA" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div><div style="font-size:14px;font-weight:600;color:var(--text)">Auto-transfer</div><div style="font-size:13px;color:var(--sub);margin-top:2px">Balance checked, funds moved if safe</div></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:12px">
+              <div style="width:32px;height:32px;background:rgba(48,209,88,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1E7A3A" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/><path d="M2 2l20 20"/></svg>
+              </div>
+              <div><div style="font-size:14px;font-weight:600;color:var(--text)">Both leads notified</div><div style="font-size:13px;color:var(--sub);margin-top:2px">"Your family is covered for 34 days"</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#FFF8EC;border-radius:14px;padding:14px 16px;margin-bottom:20px;display:flex;gap:10px">
+          <span style="display:flex;align-items:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7A5A20" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
+          <div style="font-size:13px;color:#7A5A20;line-height:1.5">No card attached. Either Family Lead can access independently — no co-approval needed in an emergency.</div>
+        </div>
+        <button class="p-btn p-btn-primary" onclick="pgo(1)" style="margin-top:auto">Set up Family Aman →</button>
+      </div>
+    </div>
+
+    <!-- S4: Setup 1/4 — Amount -->
+    <div class="pscreen" id="ps4">
+      <div class="p-setup-hd">
+        <div class="p-status" style="padding:54px 4px 0">
+          <button class="p-back" onclick="pgo(-1)">← Back</button>
+          <div style="font-size:13px;color:var(--sub)">1 of 4</div>
+        </div>
+        <div class="p-prog-track" style="margin:12px 0 0">
+          <div class="p-prog-fill" style="width:25%"></div>
+        </div>
+      </div>
+      <div class="p-scroll">
+        <div style="padding:24px 22px;background:white">
+          <div class="p-setup-title">How much after each salary?</div>
+          <div class="setup-sub mt-8">We'll move this to Family Aman 2 days after salary lands — only if your balance stays comfortable.</div>
+          <div class="amount-input mt-16">
+            <span class="p-curr-sym">AED</span>
+            <span class="p-amt-big" id="amtDisplay">500</span>
+          </div>
+          <div class="p-setup-sub">Suggested from your salary pattern</div>
+          <div style="margin-top:18px">
+            <div style="font-size:13px;font-weight:600;color:var(--sub);margin-bottom:10px">Quick select</div>
+            <div class="p-chip-row">
+              <div class="p-chip" onclick="setAmt(250)">AED 250</div>
+              <div class="p-chip" style="background:var(--p);color:white" onclick="setAmt(500)">AED 500</div>
+              <div class="p-chip" onclick="setAmt(1000)">AED 1,000</div>
+              <div class="p-chip" onclick="setAmt(2000)">AED 2,000</div>
+            </div>
+          </div>
+          <div class="info-box mt-16">
+            <span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+            <p>Both Family Leads can contribute separately. Mita can set up her own contribution from her Wio Personal.</p>
+          </div>
+        </div>
+        <div style="background:var(--bg)">
+          <div class="p-numpad">
+            <div class="p-numpad-key" onclick="numTap('1')"><div class="pnum">1</div></div>
+            <div class="p-numpad-key" onclick="numTap('2')"><div class="pnum">2</div><div class="palpha">ABC</div></div>
+            <div class="p-numpad-key" onclick="numTap('3')"><div class="pnum">3</div><div class="palpha">DEF</div></div>
+            <div class="p-numpad-key" onclick="numTap('4')"><div class="pnum">4</div><div class="palpha">GHI</div></div>
+            <div class="p-numpad-key" onclick="numTap('5')"><div class="pnum">5</div><div class="palpha">JKL</div></div>
+            <div class="p-numpad-key" onclick="numTap('6')"><div class="pnum">6</div><div class="palpha">MNO</div></div>
+            <div class="p-numpad-key" onclick="numTap('7')"><div class="pnum">7</div><div class="palpha">PQRS</div></div>
+            <div class="p-numpad-key" onclick="numTap('8')"><div class="pnum">8</div><div class="palpha">TUV</div></div>
+            <div class="p-numpad-key" onclick="numTap('9')"><div class="pnum">9</div><div class="palpha">WXYZ</div></div>
+            <div class="p-numpad-key" onclick="numTap('.')"><div class="pnum">.</div></div>
+            <div class="p-numpad-key" onclick="numTap('0')"><div class="pnum">0</div></div>
+            <div class="p-numpad-key" onclick="numTap('del')"><div class="pnum" style="font-size:20px">←</div></div>
+          </div>
+          <div style="padding:14px 22px 28px;background:white">
+            <button class="p-btn p-btn-primary" onclick="pgo(1)">Next →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S5: Setup 2/4 — Timing -->
+    <div class="pscreen" id="ps5" style="background:white">
+      <div class="p-setup-hd">
+        <div class="p-status" style="padding:54px 4px 0">
+          <button class="p-back" onclick="pgo(-1)">← Back</button>
+          <div style="font-size:13px;color:var(--sub)">2 of 4</div>
+        </div>
+        <div class="p-prog-track">
+          <div class="p-prog-fill" style="width:50%"></div>
+        </div>
+      </div>
+      <div class="p-scroll" style="padding:24px 22px">
+        <div class="p-setup-title">When should we move the money?</div>
+        <div class="setup-sub mt-8" style="margin-bottom:24px">Salary-linked adapts automatically if your pay date shifts.</div>
+        <div class="p-opt selected" id="opt-sal" onclick="selectTiming('sal')">
+          <div class="p-opt-radio"><div class="p-opt-dot"></div></div>
+          <div class="p-opt-text">
+            <h4>After my salary lands</h4>
+            <p>We detect your SAL credit, wait 2 days, then move funds.</p>
+            <div class="p-badge-rec">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1E7A3A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Recommended
+            </div>
+          </div>
+        </div>
+        <div class="p-opt" id="opt-fixed" onclick="selectTiming('fixed')" style="margin-top:10px">
+          <div class="p-opt-radio"><div class="p-opt-dot"></div></div>
+          <div class="p-opt-text">
+            <h4>On a fixed date</h4>
+            <p>Pick a specific day each month. Works without Wio salary deposit.</p>
+          </div>
+        </div>
+        <div id="date-picker-full" style="display:none;margin-top:16px">
+          <div style="font-size:13px;font-weight:600;color:var(--sub);margin-bottom:10px">Select day of month</div>
+          <div id="date-chips" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+        </div>
+        <div class="info-box mt-16" style="margin-top:20px">
+          <span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+          <p>If the transfer would drop your balance below your floor, we skip that month silently.</p>
+        </div>
+        <button class="btn btn-primary mt-20" onclick="pgo(1)" style="margin-top:32px">Next →</button>
+      </div>
+    </div>
+
+    <!-- S6: Setup 3/4 — Floor -->
+    <div class="pscreen" id="ps6" style="background:white">
+      <div class="p-setup-hd">
+        <div class="p-status" style="padding:54px 4px 0">
+          <button class="p-back" onclick="pgo(-1)">← Back</button>
+          <div style="font-size:13px;color:var(--sub)">3 of 4</div>
+        </div>
+        <div class="p-prog-track">
+          <div class="p-prog-fill" style="width:75%"></div>
+        </div>
+      </div>
+      <div class="p-scroll" style="padding:24px 22px">
+        <div class="p-setup-title">Keep a safety net in<br>your account</div>
+        <div class="setup-sub mt-8">If moving AED 500 would drop you below this floor, we skip the transfer and resume next cycle.</div>
+        <div style="text-align:center;padding:32px 0 8px">
+          <div class="p-slider-val">AED <span id="floorVal">3,000</span></div>
+          <div class="p-slider-val-sub">Minimum balance floor</div>
+        </div>
+        <div class="p-slider-wrap">
+          <input type="range" min="500" max="10000" step="500" value="3000" oninput="updateFloor(this.value)" id="floorSlider">
+          <div class="p-slider-labels">
+            <span>AED 500</span>
+            <span>AED 10,000</span>
+          </div>
+        </div>
+        <div style="background:var(--bg);border-radius:18px;overflow:hidden;margin-top:8px">
+          <div style="display:flex">
+            <div style="flex:1;padding:16px;text-align:center;background:white;border-radius:14px;margin:6px 0 6px 6px">
+              <div style="font-size:11px;color:var(--sub);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Default</div>
+              <div style="font-size:22px;font-weight:700;color:var(--text)">AED 3,000</div>
+              <div style="font-size:11px;color:var(--sub);margin-top:4px">~30 day buffer</div>
+            </div>
+            <div style="flex:1;padding:16px;text-align:center">
+              <div style="font-size:11px;color:var(--sub);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Tight month?</div>
+              <div style="font-size:16px;font-weight:700;color:var(--sub)">We skip it</div>
+              <div style="font-size:11px;color:var(--sub);margin-top:4px">Resumes next cycle</div>
+            </div>
+          </div>
+        </div>
+        <div class="p-info" style="margin-top:16px">
+          <span class="ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+          <p>This is your personal floor. Mita can set her own. Neither of you will be surprised by an unexpected dip.</p>
+        </div>
+        <button class="p-btn p-btn-primary" onclick="pgo(1)" style="margin-top:28px">Next →</button>
+      </div>
+    </div>
+
+    <!-- S7: Setup 4/4 — Confirm -->
+    <div class="pscreen" id="ps7" style="background:white">
+      <div class="p-setup-hd">
+        <div class="p-status" style="padding:54px 4px 0">
+          <button class="p-back" onclick="pgo(-1)">← Back</button>
+          <div style="font-size:13px;color:var(--sub)">4 of 4</div>
+        </div>
+        <div class="p-prog-track">
+          <div class="p-prog-fill" style="width:100%"></div>
+        </div>
+      </div>
+      <div class="p-scroll" style="padding:24px 22px">
+        <div class="p-setup-title">Your Family Aman summary</div>
+        <div class="setup-sub mt-8" style="margin-bottom:20px">Review before activating. You can change these anytime.</div>
+        <div class="p-card" style="padding:20px">
+          <div class="p-sum-row">
+            <span class="plbl">Monthly contribution</span>
+            <span class="pval purple">AED 500 / salary</span>
+          </div>
+          <div class="p-sum-row">
+            <span class="plbl">Triggered by</span>
+            <span class="pval">Salary (SAL code)</span>
+          </div>
+          <div class="p-sum-row">
+            <span class="plbl">2-day buffer</span>
+            <span class="pval">Yes — bills first</span>
+          </div>
+          <div class="p-sum-row">
+            <span class="plbl">Minimum floor</span>
+            <span class="pval">AED 3,000</span>
+          </div>
+          <div class="p-sum-row">
+            <span class="plbl">Tight month</span>
+            <span class="pval green">Skip silently</span>
+          </div>
+          <div class="p-sum-row">
+            <span class="plbl">Family Leads</span>
+            <span class="pval" style="display:flex;align-items:center;gap:6px">
+              <div class="p-av-pair">
+                <div class="p-av-sm p-av-keya"><span style="font-size:13px;font-weight:700;color:#6A4A30">K</span></div>
+                <div class="p-av-sm p-av-mita"><span style="font-size:13px;font-weight:700;color:#5B3FEA">M</span></div>
+              </div>
+              Keya + Mita
+            </span>
+          </div>
+          <div class="p-sum-row">
+            <span class="plbl">Card attached</span>
+            <span class="pval" style="color:var(--sub)">None — intentional</span>
+          </div>
+        </div>
+        <div class="p-cov-big" style="margin-top:16px">
+          <div style="font-size:12px;font-weight:700;color:var(--p);letter-spacing:0.08em;text-transform:uppercase;opacity:0.7;margin-bottom:8px">Projected in 3 months</div>
+          <div class="p-days-num">34</div>
+          <div class="p-days-label">days covered</div>
+          <div class="p-days-sub">at your family's avg. spending of AED 442/day<br>Goal: 90 days</div>
+          <div class="p-cov-prog-track">
+            <div class="p-cov-prog-fill" style="width:38%"></div>
+          </div>
+          <div class="p-cov-prog-labels">
+            <span>0 days</span>
+            <span>90 days goal</span>
+          </div>
+        </div>
+        <button class="p-btn p-btn-primary" onclick="pgo(1)" style="margin-top:20px;font-size:17px;padding:18px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="margin-right:8px;flex-shrink:0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Activate Family Aman
+        </button>
+        <button class="p-btn p-btn-ghost" style="margin-top:8px;font-size:14px" onclick="pgo(-1)">Edit settings</button>
+      </div>
+    </div>
+
+    <!-- S8: Success -->
+    <div class="pscreen" id="ps8" style="background:white;text-align:center">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 28px">
+        <div style="width:110px;height:110px;background:linear-gradient(135deg,#3B6ED4,#1E3A82);border-radius:36px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;box-shadow:0 16px 48px rgba(59,110,212,0.4)">
+          <svg width="54" height="54" viewBox="0 0 24 24" fill="white"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div style="font-size:32px;font-weight:800;color:var(--text);letter-spacing:-0.8px;margin-bottom:12px">Family Aman<br>is active.</div>
+        <div style="font-size:15px;color:var(--sub);line-height:1.6;margin-bottom:32px;max-width:280px">Both Keya and Mita will be notified every time your family buffer grows after salary day.</div>
+        <div style="background:linear-gradient(135deg,#3B6ED4,#0D1B46);border-radius:22px;padding:22px 28px;color:white;width:100%;margin-bottom:28px;text-align:left">
+          <div style="font-size:12px;font-weight:600;opacity:0.7;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px">Starting this salary cycle</div>
+          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Family Aman Space</div>
+          <div style="font-size:13px;opacity:0.65;margin-bottom:16px">Grows AED 500 every salary · goal 90 days</div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+            <div style="font-size:13px;font-weight:600;color:#30D158">0 days covered</div>
+            <div style="font-size:13px;opacity:0.6">Goal: 34 days</div>
+          </div>
+          <div class="p-cov-track">
+            <div class="p-cov-fill" style="width:2%"></div>
+          </div>
+          <div style="margin-top:12px;display:flex;align-items:center;gap:8px">
+            <div class="p-av-pair">
+              <div class="p-av-sm p-av-keya" style="border-color:rgba(255,255,255,0.3)"><span style="font-size:13px;font-weight:700;color:#6A4A30">K</span></div>
+              <div class="p-av-sm p-av-mita" style="border-color:rgba(255,255,255,0.3)"><span style="font-size:13px;font-weight:700;color:#5B3FEA">M</span></div>
+            </div>
+            <span style="font-size:12px;opacity:0.65">Keya & Mita · both leads have access</span>
+          </div>
+        </div>
+        <button class="p-btn p-btn-primary" onclick="pgo(1)" style="width:100%">View on Family tab →</button>
+        <div style="margin-top:16px;font-size:13px;color:var(--sub)">Next transfer after your salary lands</div>
+      </div>
+    </div>
+
+    <!-- S9: Family Tab — Aman Active -->
+    <div class="pscreen" id="ps9">
+      <div class="p-hero">
+        <div class="p-status">
+          <span class="time">2:26</span>
+          <span class="icons">
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="#1a1a2e"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="5" y="2" width="3" height="10" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+            <svg width="26" height="13" viewBox="0 0 26 13" fill="none"><rect x="0.5" y="0.5" width="22" height="12" rx="3.5" stroke="#1a1a2e" stroke-opacity="0.35"/><rect x="1.5" y="1.5" width="17" height="10" rx="2.5" fill="#1a1a2e"/></svg>
+          </span>
+        </div>
+        <h1>Keya's family</h1>
+        <div class="p-tabs">
+          <button class="p-tab off">My family</button>
+          <button class="p-tab on">Family saving spaces</button>
+          <button class="p-tab off">Family rewards</button>
+        </div>
+      </div>
+      <div class="p-content">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <span style="font-size:18px;font-weight:700">Saving spaces</span>
+          <button style="background:var(--p);color:white;border:none;border-radius:20px;padding:8px 16px;font-family:Inter,sans-serif;font-size:13px;font-weight:700;cursor:pointer">Add +</button>
+        </div>
+        <div class="p-scard p-scard-aman" style="cursor:pointer" onclick="pgo(1)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px">
+            <div>
+              <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.18);border-radius:12px;padding:4px 10px;font-size:11px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                FAMILY AMAN
+              </div>
+              <h3>Family Aman Space</h3>
+              <div class="psub">Auto-fills after salary · 4.5% p.a.</div>
+            </div>
+            <div class="p-av-pair">
+              <div class="p-av-sm p-av-keya" style="border-color:rgba(255,255,255,0.3)"><span style="font-size:13px;font-weight:700;color:#6A4A30">K</span></div>
+              <div class="p-av-sm p-av-mita" style="border-color:rgba(255,255,255,0.3)"><span style="font-size:13px;font-weight:700;color:#5B3FEA">M</span></div>
+            </div>
+          </div>
+          <div style="margin:12px 0 4px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <span style="font-size:20px;font-weight:800;color:#30D158">34 days covered</span>
+              <span style="font-size:12px;opacity:0.6">Goal: 90</span>
+            </div>
+            <div class="p-cov-track"><div class="p-cov-fill" style="width:38%"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:5px">
+              <span style="font-size:11px;opacity:0.55">AED 5,500 saved</span>
+              <span style="font-size:11px;opacity:0.55">AED 13,500 to goal</span>
+            </div>
+          </div>
+          <div class="pamount" style="margin-top:12px;font-size:32px">AED 5,500<span class="cents">.00</span></div>
+          <div class="p-scard-actions">
+            <button class="p-scard-action-btn">Details</button>
+            <button class="p-scard-action-btn" onclick="event.stopPropagation();pgo(2)">Withdraw</button>
+          </div>
+        </div>
+        <div class="p-scard p-scard-save">
+          <div style="display:flex;justify-content:space-between">
+            <div><h3>Family Fixed Saving Space</h3><div class="psub">Till May 7, 2026</div></div>
+            <div class="p-av-pair">
+              <div class="p-av-sm p-av-keya"><span style="font-size:13px;font-weight:700;color:#6A4A30">K</span></div>
+              <div class="p-av-sm p-av-mita"><span style="font-size:13px;font-weight:700;color:#5B3FEA">M</span></div>
+            </div>
+          </div>
+          <div class="pamount" style="margin-top:14px">AED 25,000<span class="cents">.00</span></div>
+        </div>
+      </div>
+      <div class="p-bottom-nav"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="3" y="3" width="9" height="9" rx="2" fill="white"/><rect x="16" y="3" width="9" height="9" rx="2" fill="white"/><rect x="3" y="16" width="9" height="9" rx="2" fill="white"/><rect x="16" y="16" width="9" height="9" rx="2" fill="white"/></svg></div>
+    </div>
+
+    <!-- S10: Notification -->
+    <div class="pscreen" id="ps10" style="position:relative">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,#91C4DC 0%,#C4A870 60%,#C09060 100%);filter:blur(2px) brightness(0.55);z-index:0"></div>
+      <div class="p-status" style="position:relative;z-index:10;padding-top:54px">
+        <span class="time" style="color:white">2:27</span>
+        <span class="icons">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="5" y="2" width="3" height="10" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+        </span>
+      </div>
+      <div style="position:relative;z-index:10;padding:14px 14px;display:flex;flex-direction:column;gap:8px;flex:1">
+        <div style="text-align:center;color:rgba(255,255,255,0.7);font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:4px">Notifications</div>
+        <div class="p-notif-card">
+          <div class="p-notif-ico">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="p-notif-content" style="flex:1">
+            <div class="row" style="justify-content:space-between">
+              <h4>Wio Family</h4>
+              <span class="pnt">now</span>
+            </div>
+            <p>AED 500 moved to Family Aman<br><strong style="color:#1A7A3A">Your family is covered for 34 days</strong></p>
+            <div style="margin-top:8px;height:3px;background:var(--border);border-radius:2px;overflow:hidden">
+              <div style="height:100%;width:38%;background:linear-gradient(90deg,#30D158,#5AC86A);border-radius:2px"></div>
+            </div>
+            <div style="font-size:11px;color:var(--sub);margin-top:4px">34 days · goal 90 days</div>
+          </div>
+        </div>
+        <div class="p-notif-card" style="border-left:3px solid #C4B0E8">
+          <div style="width:36px;height:36px;border-radius:9px;background:#C4B0E8;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <span style="font-size:15px;font-weight:700;color:#5B3FEA">M</span>
+          </div>
+          <div class="p-notif-content" style="flex:1">
+            <div class="row" style="justify-content:space-between">
+              <h4>Mita also notified</h4>
+              <span class="pnt">now</span>
+            </div>
+            <p>Both Family Leads receive the same coverage update independently.</p>
+            <div style="display:inline-flex;align-items:center;gap:4px;background:#E8FFE8;color:#1A7A3A;border-radius:8px;padding:3px 8px;font-size:11px;font-weight:600;margin-top:6px">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1A7A3A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Independent access confirmed
+            </div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08);border-radius:16px;padding:14px;border:1px solid rgba(255,255,255,0.15);margin-top:4px">
+          <div style="color:rgba(255,255,255,0.6);font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:6px">Tight month — silent skip</div>
+          <div style="color:rgba(255,255,255,0.8);font-size:13px;line-height:1.5">No notification sent. Transfer resumes automatically next salary cycle.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S11: Withdrawal Nudge -->
+    <div class="pscreen" id="ps11" style="background:white">
+      <div style="padding:54px 22px 0;display:flex;justify-content:space-between;align-items:center">
+        <button class="p-back" onclick="pgo(-1)">← Back</button>
+      </div>
+      <div class="p-scroll" style="padding:16px 22px">
+        <div style="text-align:center;margin:16px 0 20px">
+          <div style="margin-bottom:10px;display:flex;justify-content:center;">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--p)" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div style="font-size:22px;font-weight:800;color:var(--text);letter-spacing:-0.5px;margin-bottom:8px">Withdrawing from<br>Family Aman</div>
+          <div style="font-size:14px;color:var(--sub);line-height:1.5">This is your family's emergency buffer — not a day-to-day account.</div>
+        </div>
+        <div class="p-withdraw-preview">
+          <div style="font-size:12px;font-weight:700;color:var(--sub);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px">Coverage impact</div>
+          <div class="p-before-after">
+            <div class="p-ba-box before">
+              <div class="p-ba-label">NOW</div>
+              <div class="p-ba-num">34</div>
+              <div style="font-size:11px;color:var(--sub)">days covered</div>
+              <div class="p-ba-days">AED 5,500</div>
+            </div>
+            <div style="display:flex;align-items:center;font-size:24px;color:var(--sub)">→</div>
+            <div class="p-ba-box after">
+              <div class="p-ba-label">AFTER AED 3,000</div>
+              <div class="p-ba-num">14</div>
+              <div style="font-size:11px;color:var(--sub)">days covered</div>
+              <div class="p-ba-days" style="color:var(--red)">AED 2,500</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:var(--sub);margin-bottom:5px">Before</div>
+            <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:10px">
+              <div style="height:100%;width:38%;background:linear-gradient(90deg,#30D158,#5AC86A);border-radius:4px"></div>
+            </div>
+            <div style="font-size:12px;color:var(--sub);margin-bottom:5px">After withdrawal</div>
+            <div style="height:8px;background:var(--border);border-radius:4px;overflow:hidden">
+              <div style="height:100%;width:16%;background:linear-gradient(90deg,#FF6B6B,#FF453A);border-radius:4px"></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:#FFF8EC;border-radius:16px;padding:16px;margin-bottom:16px;display:flex;gap:12px">
+          <span style="flex-shrink:0;display:flex;align-items:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7A5A20" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </span>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#7A5A20;margin-bottom:3px">Consider this instead</div>
+            <div style="font-size:13px;color:#8A6A30;line-height:1.45">Your Family account has AED 113.25. For non-emergencies, use the shared account first to keep the family protected.</div>
+          </div>
+        </div>
+        <div style="background:var(--p-light);border-radius:14px;padding:12px 16px;margin-bottom:20px;display:flex;gap:10px;align-items:center">
+          <div class="p-av-sm p-av-mita"><span style="font-size:13px;font-weight:700;color:#5B3FEA">M</span></div>
+          <div style="font-size:13px;color:var(--p);font-weight:500">Mita will be notified of this withdrawal</div>
+        </div>
+        <button class="p-btn p-btn-primary" onclick="pgo(-1)" style="margin-bottom:10px;background:linear-gradient(135deg,#3B6ED4,#1E3A82)">Keep my family covered</button>
+        <button class="p-btn p-btn-danger" style="margin-bottom:8px" onclick="pgo(1)">Yes, withdraw AED 3,000 anyway</button>
+        <div style="text-align:center;font-size:13px;color:var(--sub);margin-top:4px">This is a real emergency? Go ahead.</div>
+      </div>
+    </div>
+
+    <!-- S12: Lead B Emergency Access -->
+    <div class="pscreen" id="ps12">
+      <div class="p-lead-b-header">
+        <button class="p-back" onclick="pgo(-1)" style="color:white;background:none;border:none;font-size:17px;cursor:pointer;position:absolute;top:54px;left:20px;font-family:Inter,sans-serif;font-weight:500">← Back</button>
+        <div class="p-av" style="width:72px;height:72px;background:#C4B0E8;border-color:rgba(255,255,255,0.5);border-width:3px;margin:0 auto 14px">
+          <span style="font-size:28px;font-weight:700;color:#5B3FEA">M</span>
+        </div>
+        <div style="font-size:13px;opacity:0.65;margin-bottom:4px">Mita Tejesh Shah</div>
+        <div style="font-size:22px;font-weight:800;margin-bottom:10px">Family Aman</div>
+        <div class="p-badge-independent">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Family Lead — Independent Access
+        </div>
+      </div>
+      <div class="p-scroll" style="padding:20px 20px 100px">
+        <div style="background:white;border-radius:18px;padding:20px;margin-bottom:14px">
+          <div style="font-size:13px;color:var(--sub);margin-bottom:4px">Available balance</div>
+          <div style="font-size:40px;font-weight:300;letter-spacing:-1.5px;color:var(--text);margin-bottom:2px">AED 5,500<span style="font-size:24px">.00</span></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+            <div style="font-size:20px;font-weight:800;color:#30D158">34 days covered</div>
+            <div class="p-av-pair">
+              <div class="p-av-sm p-av-keya"><span style="font-size:13px;font-weight:700;color:#6A4A30">K</span></div>
+              <div class="p-av-sm p-av-mita"><span style="font-size:13px;font-weight:700;color:#5B3FEA">M</span></div>
+            </div>
+          </div>
+          <div class="p-cov-track" style="margin-top:8px;background:rgba(48,209,88,0.15)">
+            <div class="p-cov-fill" style="width:38%"></div>
+          </div>
+        </div>
+        <div style="background:#E8FFE8;border-radius:16px;padding:16px;margin-bottom:14px;display:flex;gap:12px">
+          <span style="flex-shrink:0;display:flex;align-items:center;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A7A3A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:#1A7A3A;margin-bottom:4px">No approval needed</div>
+            <div style="font-size:13px;color:#2A8A4A;line-height:1.45">As a Family Lead, you have equal access to Family Aman. Keya's permission is not required.</div>
+          </div>
+        </div>
+        <div style="background:white;border-radius:18px;padding:20px;margin-bottom:14px">
+          <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px">How much do you need?</div>
+          <div style="display:flex;align-items:baseline;gap:8px;padding:14px;background:var(--bg);border-radius:14px;margin-bottom:12px">
+            <span style="font-size:22px;color:var(--sub)">AED </span>
+            <span style="font-size:38px;font-weight:300;letter-spacing:-1px;color:var(--text)">3,000</span>
+          </div>
+          <div style="display:flex;gap:8px">
+            <div class="p-chip" style="font-size:12px">AED 500</div>
+            <div class="p-chip" style="font-size:12px;background:var(--p);color:white">AED 3,000</div>
+            <div class="p-chip" style="font-size:12px">All AED 5,500</div>
+          </div>
+        </div>
+        <div style="background:white;border-radius:16px;padding:16px;margin-bottom:20px;display:flex;align-items:center;gap:12px">
+          <div class="p-av-sm p-av-keya"><span style="font-size:13px;font-weight:700;color:#6A4A30">K</span></div>
+          <div style="flex:1">
+            <div style="font-size:14px;font-weight:600;color:var(--text)">Keya will be notified</div>
+            <div style="font-size:12px;color:var(--sub);margin-top:2px">She'll see: "Mita withdrew AED 3,000 from Family Aman"</div>
+          </div>
+          <div style="width:24px;height:24px;background:#E8FFE8;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1A7A3A" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+        </div>
+        <button class="p-btn p-btn-primary" style="background:linear-gradient(135deg,#3B6ED4,#1E3A82)" onclick="pgo(-1)">Withdraw AED 3,000 now</button>
+        <div style="text-align:center;font-size:13px;color:var(--sub);margin-top:12px">Funds arrive in your Wio Personal instantly</div>
+      </div>
+    </div>
+
+  
+</div><!-- /proto-scale-wrap -->
+</div><!-- /phone -->
+        <div class="proto-dots" id="protoDots"></div>
+      </div>
+    </div><!-- /solution-right -->
+  </div><!-- /solution-split -->
+</div>
+</section>
+
+<!-- 05 EXECUTION -->
+<section class="section" id="execution" style="background:var(--offwhite);">
+<div class="container">
+  <div class="section-eyebrow">05: Execution & Collaboration Plan</div>
+  <h2 class="section-title">From insight to shipped<br>in 10-12 weeks.</h2>
+  <p class="section-intro">MVP ships in 4-6 weeks. Full execution in 10-12 weeks max. Phased so we learn from real user behavior before building complexity.</p>
+
+  <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:40px;">
+    <div class="phase-card"><div class="ph-header"><div class="ph-name">Phase 1 — Discover & Validate</div><div class="ph-time">Weeks 1-2</div></div><ul class="ph-list"><li>Compliance review: confirm SAL-triggered transfer rule under CBUAE standing instruction framework</li><li>Engineering spike: confirm SAL code logging and conditional transfer feasibility on existing rails</li><li>Data pull: Family activation rates, manual transfer frequency, SAL detection rate</li><li>User interviews: 6–8 Family Lead users across key segments</li><li>Lock MVP scope based on compliance and engineering findings</li></ul></div>
+    <div class="phase-card"><div class="ph-header"><div class="ph-name">Phase 2 — Design & Build MVP</div><div class="ph-time">Weeks 3-6</div></div><ul class="ph-list"><li>Design: 4-screen setup flow, coverage meter, withdrawal nudge, dual-lead notification</li><li>Engineering: SAL detection hook, rule engine, conditional transfer, Family Space credit</li><li>Data: monthly burn calculation, suggested contribution pre-fill, coverage meter logic</li><li>UX Writing: all copy against confidence-first framework — zero fear language</li><li>QA: tight month skip, dual-lead simultaneous access, no-SAL fallback, single-income household</li><li>Compliance sign-off on consent screens and disclosure language</li></ul></div>
+    <div class="phase-card"><div class="ph-header"><div class="ph-name">Phase 3 — Pilot</div><div class="ph-time">Weeks 7-9</div></div><ul class="ph-list"><li>Soft launch to 10% of Family accounts — prioritize Segments B and C</li><li>Monitor: setup completion rate, contribution success, skip rate, withdrawal rate</li><li>A/B test: suggested contribution amount pre-fills (10% of income vs fixed AED 1,500)</li><li>A/B test: salary-day trigger vs Family tab surfacing</li><li>Weekly review cadence: Product, Data, Design, CS</li><li>Collect qualitative: in-app rating prompt after first successful contribution</li></ul></div>
+    <div class="phase-card"><div class="ph-header"><div class="ph-name">Phase 4 — Scale & Extend</div><div class="ph-time">Weeks 10-12</div></div><ul class="ph-list"><li>Full rollout with GTM campaign: in-app, WhatsApp, social</li><li>Wio Business employer partnership channel activation</li><li>Phase 2: multi-currency Aman Space once INR/PKR corridors exist</li><li>Phase 2: Aman milestone moments — shareable "30 days covered" cards</li><li>Phase 2: Aman as Family onboarding default — new Family setup includes Aman as step 3</li><li>Evaluate: upsell pathway from Aman buffer to Family Fixed Saving Space at 6%</li></ul></div>
+  </div>
+</div>
+</section>
+
+<!-- 06 CALCULATIONS -->
+<section class="section" id="calculations" style="background:var(--navy);">
+<div class="container">
+  <div class="section-eyebrow">06: Calculations & Estimations</div>
+  <h2 class="section-title">The numbers behind<br>the proposal.</h2>
+  <p class="section-intro">All figures are sourced, estimated, or derived transparently. Where assumptions are made, they are stated. These are directional estimates, not financial projections.</p>
+
+  <div class="calc-block">
+    <div class="calc-title">Typical UAE Middle-Income Expat Family: Monthly Fixed Obligations</div>
+    <table class="ctable">
+      <thead><tr><th>Expense</th><th>Low (AED)</th><th>High (AED)</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>Rent (2BR, Dubai/AD)</td><td>7,000</td><td>12,000</td><td>Dubai rental market averages, 2024</td></tr>
+        <tr><td>School fees (1 child, mid-tier, monthly)</td><td>2,000</td><td>4,500</td><td>AED 24K–54K/year ÷ 12; Edarabia 2025</td></tr>
+        <tr><td>Helper salary (live-in)</td><td>2,000</td><td>3,500</td><td>Yaya Middle East, 2025</td></tr>
+        <tr><td>Groceries & household</td><td>2,500</td><td>4,000</td><td>UAE household expenditure estimates</td></tr>
+        <tr><td>DEWA / utilities</td><td>600</td><td>1,200</td><td>Dubai average household bills</td></tr>
+        <tr><td>Transport</td><td>1,200</td><td>2,500</td><td>UAE transport averages</td></tr>
+        <tr><td>Insurance (health, car, life)</td><td>800</td><td>1,500</td><td>UAE insurance market averages</td></tr>
+        <tr><td>Mobile + internet</td><td>300</td><td>600</td><td>UAE telecom pricing</td></tr>
+        <tr class="chi"><td><strong>Total Monthly Fixed Floor</strong></td><td><strong>16,400</strong></td><td><strong>29,800</strong></td><td>Sum of above</td></tr>
+        <tr class="chi"><td colspan="2"><strong>Midpoint used in all projections: AED 22,000/month</strong></td><td colspan="2"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="calc-block">
+    <div class="calc-title">What Does a UAE Family's Aman Target Look Like?</div>
+    <div class="formula">
+Emergency Fund Target = (Essential Monthly Burn × Months Coverage) + One-Time Shock Buffer
+
+One-Time Shocks (UAE-specific):
+  Emergency flights home (family of 4):   AED 12,000 – 20,000
+  Medical deductible / uninsured gap:      AED  5,000 – 10,000
+  Visa / legal emergency:                  AED  3,000 –  8,000
+  Emergency relocation deposit:            AED  8,000 – 15,000
+  Total shock buffer midpoint:             AED 40,000
+
+Stable salaried household (3 months):    AED 22,000 × 3 + 40,000 = AED 106,000
+Single-income household (5 months):      AED 22,000 × 5 + 40,000 = AED 150,000
+Freelancer / business owner (9 months):  AED 22,000 × 9 + 40,000 = AED 238,000
+    </div>
+    <div class="calc-result"><span class="cr-label">Practical MVP first milestone — 90 days of essential burn</span><span class="cr-val">AED 66,000</span></div>
+    <div class="calc-result" style="margin-top:8px"><span class="cr-label">Achievable in 6 months at AED 2,000/month auto-contribution</span><span class="cr-val">AED 12,000 = 16 days</span></div>
+  </div>
+
+  <div class="calc-block">
+    <div class="calc-title">Incremental Deposit Potential</div>
+    <table class="ctable">
+      <thead><tr><th>Variable</th><th>Conservative</th><th>Base Case</th><th>Optimistic</th></tr></thead>
+      <tbody>
+        <tr><td>Wio retail customers (current)</td><td>250,000</td><td>250,000</td><td>250,000</td></tr>
+        <tr><td>% who are / become Family accounts</td><td>20%</td><td>30%</td><td>40%</td></tr>
+        <tr><td>% Family accounts with active Aman rule</td><td>25%</td><td>35%</td><td>50%</td></tr>
+        <tr><td>Aman-active households</td><td>12,500</td><td>26,250</td><td>50,000</td></tr>
+        <tr><td>Average Aman Space balance (12 months)</td><td>AED 15,000</td><td>AED 25,000</td><td>AED 35,000</td></tr>
+        <tr class="chi"><td><strong>Incremental Deposits</strong></td><td><strong>AED 187.5M</strong></td><td><strong>AED 656M</strong></td><td><strong>AED 1.75B</strong></td></tr>
+        <tr><td>Net Interest Margin (1.5%)</td><td>AED 2.8M/yr</td><td>AED 9.8M/yr</td><td>AED 26.2M/yr</td></tr>
+      </tbody>
+    </table>
+    <div class="calc-result" style="margin-top:14px"><span class="cr-label">Base case incremental annual revenue from Aman deposits alone</span><span class="cr-val">AED 9.8M / year</span></div>
+  </div>
+
+  <div class="calc-block">
+    <div class="calc-title">The AED 35,000 Free Tier Churn Effect</div>
+    <div class="formula">
+Wio Family is free if any Family Lead maintains AED 35,000 across accounts.
+
+Time to reach AED 35,000 Aman threshold:
+  At AED 1,000/month: 35 months
+  At AED 1,500/month: 23 months
+  At AED 2,000/month: 17.5 months
+  At AED 3,000/month: 12 months
+
+Once threshold is crossed:
+  Monthly fee of AED 49 waived = AED 588/year saved by family
+  Strong financial incentive to maintain balance above threshold
+  Churn probability drops significantly (estimated ~60% lower)
+    </div>
+  </div>
+
+  <div class="calc-block">
+    <div class="calc-title">Days Covered — Coverage Meter Logic</div>
+    <div class="formula">
+Days Covered = Aman Space Balance ÷ Average Daily Essential Burn
+
+Average Daily Burn = (Rolling 3-month essential transactions) ÷ 90
+Essential transactions = rent, utilities, groceries, school fees, insurance
+
+Example:
+  Aman Balance:           AED 18,400
+  Monthly Essential Burn: AED 22,000
+  Daily Burn:             AED 22,000 ÷ 30 = AED 733/day
+  Days Covered:           AED 18,400 ÷ 733 = 25 days
+
+Display: "Your family is covered for 25 days — Goal: 90 days"
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 07 FAQ -->
+<section class="section" id="faq">
+<div class="container">
+  <div class="section-eyebrow">07: FAQ</div>
+  <h2 class="section-title">Questions we asked<br>building this.</h2>
+  <p class="section-intro">Good product thinking means pressure-testing your own ideas. Honest answers to the real edge cases.</p>
+
+  <div class="faq-cat">Product Design</div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">How is Family Aman different from just renaming a Saving Space "Emergency Fund"?<div class="faq-tog">+</div></div><div class="faq-a">The name is the least of it. The innovations are: SAL-triggered auto-contribution; minimum balance guardrail; a "days covered" meter from real transaction data; deliberate withdrawal friction; and dual-lead access. A renamed saving space has none of these.</div></div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">Why flexible access and not a fixed deposit?<div class="faq-tog">+</div></div><div class="faq-a">An emergency fund that is locked is not an emergency fund. Wio's Fixed Saving Spaces at 6% are for goals. Aman is for situations where you need the money within 24 hours. Conflating them makes the product functionally broken when it matters most.</div></div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">Doesn't the skip mechanic undermine the whole point?<div class="faq-tog">+</div></div><div class="faq-a">The skip only fires when the contribution would leave someone short of their floor. In most months, it never fires. Behavioral integrity comes from withdrawal friction — not contribution rigidity. These are separate design levers.</div></div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">What is the point of a withdrawal nudge if people can tap through it?<div class="faq-tog">+</div></div><div class="faq-a">The goal is not to stop action — it is to make action deliberate rather than impulsive. People in genuine emergencies tap through without hesitation. People acting on impulse pause and reconsider. The nudge is a reflection prompt, not a lock.</div></div>
+
+  <div class="faq-cat">Household Structure & Access</div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">What if only one Family Lead earns?<div class="faq-tog">+</div></div><div class="faq-a">The SAL rule fires on whichever lead's account receives the salary. The non-earning lead contributes zero automatically — which is correct. Critically: both leads have equal access to withdraw in an emergency, so the non-earning lead is fully protected even as a non-contributor.</div></div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">Can kids access Aman if both parents are unreachable?<div class="faq-tog">+</div></div><div class="faq-a">No. Children with Pockets cannot access Aman. This is regulatory (UAE law) and by design. If both parents are genuinely incapacitated, that requires guardianship — correctly outside banking's scope.</div></div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">What if both leads try to access simultaneously?<div class="faq-tog">+</div></div><div class="faq-a">Standard banking concurrency logic handles this — same as any shared account. Both leads are notified of each other's withdrawals immediately. This transparency itself prevents one lead from quietly draining the buffer.</div></div>
+
+  <div class="faq-cat">Technical & Compliance</div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">Does Wio reliably detect SAL codes?<div class="faq-tog">+</div></div><div class="faq-a">Yes — Wio already uses SAL code detection to unlock the 6% interest rate on Personal salary plan accounts. The detection infrastructure exists. What doesn't exist is a conditional transfer rule that fires on SAL detection. That is the new build.</div></div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">What about freelancers paid without a SAL code?<div class="faq-tog">+</div></div><div class="faq-a">The setup flow offers a fixed-date fallback: pick a specific day each month. Same mechanic, no SAL required. Inclusive of the full UAE income spectrum — salaried, freelance, business-owner, irregular income.</div></div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">What CBUAE requirements apply to this auto-transfer rule?<div class="faq-tog">+</div></div><div class="faq-a">Week 1 compliance consultation item — before any design begins. Likely framework: CBUAE's standing instruction regulation. Expected requirements: explicit consent, clear disclosure, easily accessible cancel/pause, transparent confirmation per transfer. Requires direct compliance input and cannot be assumed.</div></div>
+
+  <div class="faq-cat">Business & Strategy</div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">If 46% of UAE residents already build emergency funds, isn't the market addressed?<div class="faq-tog">+</div></div><div class="faq-a">No. 46% direct some bonus money toward an emergency fund — reactive, episodic, individual. The same period shows 68% have less than 3 months saved. More importantly, none of the 46% have a jointly-accessible family emergency fund. That is a completely different problem.</div></div>
+  <div class="faq-item" onclick="tog(this)"><div class="faq-q">Is multi-currency Aman relevant for the South Asian expat community?<div class="faq-tog">+</div></div><div class="faq-a">Conceptually yes. However, Wio does not currently support INR/PKR corridors. AED-only for Phase 1 is the right call. Multi-currency is Phase 2, contingent on corridor availability. This trade-off is explicitly stated, not hidden.</div></div>
+</div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Wio Family Aman</div>
+  <p>A strategy-to-execution proposal for Wio Family's next high-impact feature.<br>
+  Grounded in UAE market research, behavioral economics, and honest product thinking.<br><br>
+  <strong>Submitted as part of Wio Bank Associate role · 2026</strong><br>
+  <span style="font-size:11px;opacity:0.5;margin-top:8px;display:block;">All statistics cited from publicly available sources. Internal metrics are stated assumptions. Deposit estimates are directional and require internal validation.</span></p>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-journey1">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-journey1')">✕</button>
+    <h3>Discovery — Full Detail</h3>
+    <p>Surfaces in Family tab after account activation, when a child Pocket is created, or on salary-credit day. Never a cold push. Always tied to a moment when stakes are top of mind.</p>
+    <p style="margin-top:12px;font-style:italic;color:var(--navy);">"Most UAE families have less than 2 weeks of savings they can all access. Set up your Family Aman in 2 minutes — we will handle it automatically."</p>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-journey2">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('modal-journey2')">✕</button>
+    <h3>Setup — Full Detail</h3>
+    <p>Screen 1: How much per month? Pre-filled from income data, editable. Screen 2: When to transfer? Default — Day 2 after salary. Screen 3: Keep at least AED X in personal — default AED 3,000. Screen 4: Summary with projected days covered in 6 months. One tap. Done.</p>
+    <p style="margin-top:12px;">Non-salaried users get a fixed-date fallback — set a specific day each month and the transfer fires regardless of what came in. Inclusive of the full UAE income spectrum.</p>
+  </div>
+</div>
+
+<script>
+/* FAQ Toggle */
+function tog(el){el.classList.toggle('open');}
+
+/* Tab Switcher */
+function switchTab(btn,id){
+  document.querySelectorAll('.tabs .tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+}
+
+/* Modals */
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-overlay').forEach(el=>{
+  el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});
+});
+
+
+
+/* ── Prototype ─────────────────────────────────── */
+const PSCREENS=[
+  {id:'ps0',label:'Family Dashboard'},
+  {id:'ps1',label:'Shared Accounts'},
+  {id:'ps2',label:'Family Saving Spaces'},
+  {id:'ps3',label:'Family Aman — Introduction'},
+  {id:'ps4',label:'Setup 1/4 — Contribution Amount'},
+  {id:'ps5',label:'Setup 2/4 — Timing'},
+  {id:'ps6',label:'Setup 3/4 — Balance Floor'},
+  {id:'ps7',label:'Setup 4/4 — Summary'},
+  {id:'ps8',label:'Setup Complete'},
+  {id:'ps9',label:'Family Tab — Aman Active'},
+  {id:'ps10',label:'Monthly Notification'},
+  {id:'ps11',label:'Withdrawal Nudge'},
+  {id:'ps12',label:'Lead B Emergency Access'},
+];
+let pcur=0;
+function prender(){
+  PSCREENS.forEach((s,i)=>{document.getElementById(s.id).classList.toggle('active',i===pcur);});
+  document.getElementById('protoScreenNum').textContent=`Screen ${pcur+1} / ${PSCREENS.length}`;
+  document.getElementById('protoScreenName').textContent=PSCREENS[pcur].label;
+  document.getElementById('protoPrevBtn').disabled=pcur===0;
+  document.getElementById('protoNextBtn').disabled=pcur===PSCREENS.length-1;
+  const dots=document.getElementById('protoDots');
+  dots.innerHTML=PSCREENS.map((s,i)=>`<div class="proto-dot${i===pcur?' active':''}" onclick="pgoTo(${i})"></div>`).join('');
+}
+function pgo(d){pcur=Math.max(0,Math.min(PSCREENS.length-1,pcur+d));prender();var s=document.getElementById(PSCREENS[pcur].id);var sa=s.querySelector('.p-scroll,.p-content');if(sa)sa.scrollTop=0;}
+function pgoTo(i){pcur=i;prender();}
+
+/* Amount numpad */
+let amtStr='500';
+function numTap(k){
+  if(k==='del'){amtStr=amtStr.slice(0,-1)||'0';}
+  else if(k==='.'&&amtStr.includes('.')){return;}
+  else if(amtStr==='0'&&k!=='.'){amtStr=k;}
+  else{if(amtStr.length<7)amtStr+=k;}
+  document.getElementById('amtDisplay').textContent=parseInt(amtStr||0).toLocaleString();
+}
+function setAmt(v){amtStr=String(v);document.getElementById('amtDisplay').textContent=v.toLocaleString();}
+
+/* Timing selector */
+function selectTiming(t){
+  const salEl=document.getElementById('opt-sal');const fixEl=document.getElementById('opt-fixed');const dpEl=document.getElementById('date-picker-full');
+  if(t==='sal'){salEl.classList.add('selected');fixEl.classList.remove('selected');dpEl.style.display='none';}
+  else{fixEl.classList.add('selected');salEl.classList.remove('selected');dpEl.style.display='block';
+    if(!document.getElementById('date-chips').children.length){
+      const chips=document.getElementById('date-chips');
+      for(let i=1;i<=28;i++){const c=document.createElement('div');c.className='p-chip';c.style.minWidth='40px';c.style.justifyContent='center';if(i===15){c.style.background='#5B3FEA';c.style.color='white';}c.textContent=i;c.onclick=()=>{chips.querySelectorAll('.p-chip').forEach(x=>{x.style.background='';x.style.color='';});c.style.background='#5B3FEA';c.style.color='white';};chips.appendChild(c);}}
+  }
+}
+
+/* Floor slider */
+function updateFloor(v){
+  const n=parseInt(v);document.getElementById('floorVal').textContent=n.toLocaleString();
+  const pct=(n-500)/(10000-500)*100;document.getElementById('floorSlider').style.background=`linear-gradient(to right,#5B3FEA ${pct}%,#E8E8ED ${pct}%)`;
+}
+
+document.addEventListener('DOMContentLoaded',()=>{updateFloor(3000);prender();});
+updateFloor(3000);prender();
+</script>
+</body>
+</html>
